@@ -28,6 +28,29 @@ interface Props {
 const { id, home, away, date, venue, isKnockout = false, homePlaceholder = "", awayPlaceholder = "", result, lang } = Astro.props;
 const t = useTranslations(lang);
 
+// Locale map for Intl.DateTimeFormat
+const localeMap: Record<'en' | 'es' | 'fr', string> = { en: 'en-US', es: 'es-MX', fr: 'fr-FR' };
+
+/**
+ * Parses a compact date string in YYYYMMDD format and returns a locale-formatted date string.
+ * e.g. "20260611" + lang="fr" -> "11 juin 2026"
+ */
+function formatMatchDate(yyyymmdd: string, lang: 'en' | 'es' | 'fr'): string {
+  const year = parseInt(yyyymmdd.slice(0, 4), 10);
+  const month = parseInt(yyyymmdd.slice(4, 6), 10) - 1; // 0-indexed
+  const day = parseInt(yyyymmdd.slice(6, 8), 10);
+  // Use UTC noon to avoid any timezone-related day shifts
+  const dateObj = new Date(Date.UTC(year, month, day, 12, 0, 0));
+  return new Intl.DateTimeFormat(localeMap[lang], {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+    timeZone: 'UTC',
+  }).format(dateObj);
+}
+
+const formattedDate = formatMatchDate(date, lang);
+
 // Build a map of team name -> type ("pieds" | "tetes") from wcData
 const teamTypes: Record<string, 'pieds' | 'tetes'> = {};
 wcData.groups.forEach(group => {
@@ -52,7 +75,7 @@ const awayType = away ? teamTypes[away] : "unknown";
   <!-- Card Header: Match ID, Round, Date/Venue -->
   <div class="match-card-header">
     <span class="match-number">N°{id}</span>
-    <span class="match-meta">{date} • {venue}</span>
+    <span class="match-meta">{formattedDate} • {t(venue as any)}</span>
   </div>
 
   <!-- Teams Section -->

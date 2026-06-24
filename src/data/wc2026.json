@@ -3,14 +3,19 @@
     {
       "id": "A",
       "name": "Groupe A",
-      "teams": ["Mexique", "Afrique du Sud", "Corée du Sud", "Tchéquie"],
+      "teams": [
+        "MEX",
+        "RSA",
+        "KOR",
+        "CZE"
+      ],
       "matches": [
-        { 
-          "id": 1, 
-          "home": "Mexique", 
-          "away": "Afrique du Sud", 
-          "date": "11 Juin 2026", 
-          "venue": "Mexico (Azteca)",
+        {
+          "id": 1,
+          "home": "MEX",
+          "away": "RSA",
+          "date": "20260611",
+          "venue": "V_MEXICO_AZTECA",
           "result": {
             "homeScore": 2,
             "awayScore": 0,
@@ -20,12 +25,12 @@
             "awayHeadGoals": 0
           }
         },
-        { 
-          "id": 2, 
-          "home": "Corée du Sud", 
-          "away": "Tchéquie", 
-          "date": "12 Juin 2026", 
-          "venue": "Guadalajara (Zapopan)",
+        {
+          "id": 2,
+          "home": "KOR",
+          "away": "CZE",
+          "date": "20260612",
+          "venue": "V_GUADALAJARA",
           "result": {
             "homeScore": 2,
             "awayScore": 1,
@@ -35,12 +40,12 @@
             "awayHeadGoals": 1
           }
         },
-        { 
-          "id": 3, 
-          "home": "Mexique", 
-          "away": "Corée du Sud", 
-          "date": "18 Juin 2026", 
-          "venue": "Guadalajara (Zapopan)",
+        {
+          "id": 3,
+          "home": "MEX",
+          "away": "KOR",
+          "date": "20260618",
+          "venue": "V_GUADALAJARA",
           "result": {
             "homeScore": 1,
             "awayScore": 0,
@@ -50,12 +55,12 @@
             "awayHeadGoals": 0
           }
         },
-        { 
-          "id": 4, 
-          "home": "Tchéquie", 
-          "away": "Afrique du Sud", 
-          "date": "18 Juin 2026", 
-          "venue": "Atlanta (Mercedes-Benz Stadium)",
+        {
+          "id": 4,
+          "home": "CZE",
+          "away": "RSA",
+          "date": "20260618",
+          "venue": "V_ATLANTA_MERCEDES",
           "result": {
             "homeScore": 1,
             "awayScore": 1,
@@ -65,151 +70,614 @@
             "awayHeadGoals": 0
           }
         },
-        { "id": 5, "home": "Afrique du Sud", "away": "Corée du Sud", "date": "24 Juin 2026", "venue": "Monterrey" },
-        { "id": 6, "home": "Tchéquie", "away": "Mexique", "date": "24 Juin 2026", "venue": "Mexico (Azteca)" }
+        {
+          "id": 5,
+          "home": "RSA",
+          "away": "KOR",
+          "date": "20260624",
+          "venue": "V_MONTERREY"
+        },
+        {
+          "id": 6,
+          "home": "CZE",
+          "away": "MEX",
+          "date": "20260624",
+          "venue": "V_MEXICO_AZTECA"
+        }
       ]
     },
     {
       "id": "B",
       "name": "Groupe B",
-      "teams": ["B1", "B2", "B3", "B4"],
+      "teams": [
+        "B1",
+        "B2",
+        "B3",
+        "B4"
+      ],
       "matches": [
-        { "id": 7, "home": "B1", "away": "B2", "date": "12 Juin 2026", "venue": "Toronto" },
-        { "id": 8, "home": "B3", "away": "B4", "date": "13 Juin 2026", "venue": "Vancouver" },
-        { "id": 9, "home": "B1", "away": "B3", "date": "17 Juin 2026", "venue": "Toronto" },
-        { "id": 10, "home": "B4", "away": "B2", "date": "18 Juin 2026", "venue": "Vancouver" },
-        { "id": 11, "home": "B2", "away": "B3", "date": "24 Juin 2026", "venue": "Toronto" },
-        { "id": 12, "home": "B4", "away": "B1", "date": "24 Juin 2026", "venue": "Vancouver" }
+        {
+          "id": 7,
+          "home": "B1",
+          "away": "B2",
+          "date": "20260612",
+          "venue": "V_TORONTO"
+        },
+        {
+          "id": 8,
+          "home": "B3",
+          "away": "B4",
+          "date": "20260613",
+          "venue": "V_VANCOUVER"
+        },
+        {
+          "id": 9,
+          "home": "B1",
+          "away": "B3",
+          "date": "20260617",
+          "venue": "V_TORONTO"
+        },
+        {
+          "id": 10,
+          "home": "B4",
+          "away": "B2",
+          "date": "20260618",
+          "venue": "V_VANCOUVER"
+        },
+        {
+          "id": 11,
+          "home": "B2",
+          "away": "B3",
+          "date": "20260624",
+          "venue": "V_TORONTO"
+        },
+        {
+          "id": 12,
+          "home": "B4",
+          "away": "B1",
+          "date": "20260624",
+          "venue": "V_VANCOUVER"
+        }
       ]
     },
     {
       "id": "C",
       "name": "Groupe C",
-      "teams": ["C1", "C2", "C3", "C4"],
+      "teams": [
+        "C1",
+        "C2",
+        "C3",
+        "C4"
+      ],
       "matches": [
-        { "id": 13, "home": "C1", "away": "C2", "date": "13 Juin 2026", "venue": "Los Angeles" },
-        { "id": 14, "home": "C3", "away": "C4", "date": "14 Juin 2026", "venue": "Seattle" },
-        { "id": 15, "home": "C1", "away": "C3", "date": "19 Juin 2026", "venue": "Seattle" },
-        { "id": 16, "home": "C4", "away": "C2", "date": "20 Juin 2026", "venue": "Los Angeles" },
-        { "id": 17, "home": "C2", "away": "C3", "date": "24 Juin 2026", "venue": "Seattle" },
-        { "id": 18, "home": "C4", "away": "C1", "date": "24 Juin 2026", "venue": "Los Angeles" }
+        {
+          "id": 13,
+          "home": "C1",
+          "away": "C2",
+          "date": "20260613",
+          "venue": "V_LOS_ANGELES"
+        },
+        {
+          "id": 14,
+          "home": "C3",
+          "away": "C4",
+          "date": "20260614",
+          "venue": "V_SEATTLE"
+        },
+        {
+          "id": 15,
+          "home": "C1",
+          "away": "C3",
+          "date": "20260619",
+          "venue": "V_SEATTLE"
+        },
+        {
+          "id": 16,
+          "home": "C4",
+          "away": "C2",
+          "date": "20260620",
+          "venue": "V_LOS_ANGELES"
+        },
+        {
+          "id": 17,
+          "home": "C2",
+          "away": "C3",
+          "date": "20260624",
+          "venue": "V_SEATTLE"
+        },
+        {
+          "id": 18,
+          "home": "C4",
+          "away": "C1",
+          "date": "20260624",
+          "venue": "V_LOS_ANGELES"
+        }
       ]
     },
     {
       "id": "D",
       "name": "Groupe D",
-      "teams": ["D1", "D2", "D3", "D4"],
+      "teams": [
+        "D1",
+        "D2",
+        "D3",
+        "D4"
+      ],
       "matches": [
-        { "id": 19, "home": "D1", "away": "D2", "date": "14 Juin 2026", "venue": "Houston" },
-        { "id": 20, "home": "D3", "away": "D4", "date": "15 Juin 2026", "venue": "Dallas" },
-        { "id": 21, "home": "D1", "away": "D3", "date": "19 Juin 2026", "venue": "Houston" },
-        { "id": 22, "home": "D4", "away": "D2", "date": "20 Juin 2026", "venue": "Dallas" },
-        { "id": 23, "home": "D2", "away": "D3", "date": "25 Juin 2026", "venue": "Dallas" },
-        { "id": 24, "home": "D4", "away": "D1", "date": "25 Juin 2026", "venue": "Houston" }
+        {
+          "id": 19,
+          "home": "D1",
+          "away": "D2",
+          "date": "20260614",
+          "venue": "V_HOUSTON"
+        },
+        {
+          "id": 20,
+          "home": "D3",
+          "away": "D4",
+          "date": "20260615",
+          "venue": "V_DALLAS"
+        },
+        {
+          "id": 21,
+          "home": "D1",
+          "away": "D3",
+          "date": "20260619",
+          "venue": "V_HOUSTON"
+        },
+        {
+          "id": 22,
+          "home": "D4",
+          "away": "D2",
+          "date": "20260620",
+          "venue": "V_DALLAS"
+        },
+        {
+          "id": 23,
+          "home": "D2",
+          "away": "D3",
+          "date": "20260625",
+          "venue": "V_DALLAS"
+        },
+        {
+          "id": 24,
+          "home": "D4",
+          "away": "D1",
+          "date": "20260625",
+          "venue": "V_HOUSTON"
+        }
       ]
     },
     {
       "id": "E",
       "name": "Groupe E",
-      "teams": ["E1", "E2", "E3", "E4"],
+      "teams": [
+        "E1",
+        "E2",
+        "E3",
+        "E4"
+      ],
       "matches": [
-        { "id": 25, "home": "E1", "away": "E2", "date": "15 Juin 2026", "venue": "New York / New Jersey" },
-        { "id": 26, "home": "E3", "away": "E4", "date": "16 Juin 2026", "venue": "Boston" },
-        { "id": 27, "home": "E1", "away": "E3", "date": "20 Juin 2026", "venue": "New York / New Jersey" },
-        { "id": 28, "home": "E4", "away": "E2", "date": "21 Juin 2026", "venue": "Boston" },
-        { "id": 29, "home": "E2", "away": "E3", "date": "25 Juin 2026", "venue": "Philadelphia" },
-        { "id": 30, "home": "E4", "away": "E1", "date": "25 Juin 2026", "venue": "New York / New Jersey" }
+        {
+          "id": 25,
+          "home": "E1",
+          "away": "E2",
+          "date": "20260615",
+          "venue": "V_NY_NJ"
+        },
+        {
+          "id": 26,
+          "home": "E3",
+          "away": "E4",
+          "date": "20260616",
+          "venue": "V_BOSTON"
+        },
+        {
+          "id": 27,
+          "home": "E1",
+          "away": "E3",
+          "date": "20260620",
+          "venue": "V_NY_NJ"
+        },
+        {
+          "id": 28,
+          "home": "E4",
+          "away": "E2",
+          "date": "20260621",
+          "venue": "V_BOSTON"
+        },
+        {
+          "id": 29,
+          "home": "E2",
+          "away": "E3",
+          "date": "20260625",
+          "venue": "V_PHILADELPHIA"
+        },
+        {
+          "id": 30,
+          "home": "E4",
+          "away": "E1",
+          "date": "20260625",
+          "venue": "V_NY_NJ"
+        }
       ]
     },
     {
       "id": "F",
       "name": "Groupe F",
-      "teams": ["F1", "F2", "F3", "F4"],
+      "teams": [
+        "F1",
+        "F2",
+        "F3",
+        "F4"
+      ],
       "matches": [
-        { "id": 31, "home": "F1", "away": "F2", "date": "16 Juin 2026", "venue": "San Francisco" },
-        { "id": 32, "home": "F3", "away": "F4", "date": "17 Juin 2026", "venue": "Seattle" },
-        { "id": 33, "home": "F1", "away": "F3", "date": "21 Juin 2026", "venue": "San Francisco" },
-        { "id": 34, "home": "F4", "away": "F2", "date": "22 Juin 2026", "venue": "Seattle" },
-        { "id": 35, "home": "F2", "away": "F3", "date": "25 Juin 2026", "venue": "San Francisco" },
-        { "id": 36, "home": "F4", "away": "F1", "date": "25 Juin 2026", "venue": "Seattle" }
+        {
+          "id": 31,
+          "home": "F1",
+          "away": "F2",
+          "date": "20260616",
+          "venue": "V_SAN_FRANCISCO"
+        },
+        {
+          "id": 32,
+          "home": "F3",
+          "away": "F4",
+          "date": "20260617",
+          "venue": "V_SEATTLE"
+        },
+        {
+          "id": 33,
+          "home": "F1",
+          "away": "F3",
+          "date": "20260621",
+          "venue": "V_SAN_FRANCISCO"
+        },
+        {
+          "id": 34,
+          "home": "F4",
+          "away": "F2",
+          "date": "20260622",
+          "venue": "V_SEATTLE"
+        },
+        {
+          "id": 35,
+          "home": "F2",
+          "away": "F3",
+          "date": "20260625",
+          "venue": "V_SAN_FRANCISCO"
+        },
+        {
+          "id": 36,
+          "home": "F4",
+          "away": "F1",
+          "date": "20260625",
+          "venue": "V_SEATTLE"
+        }
       ]
     },
     {
       "id": "G",
       "name": "Groupe G",
-      "teams": ["G1", "G2", "G3", "G4"],
+      "teams": [
+        "G1",
+        "G2",
+        "G3",
+        "G4"
+      ],
       "matches": [
-        { "id": 37, "home": "G1", "away": "G2", "date": "17 Juin 2026", "venue": "Kansas City" },
-        { "id": 38, "home": "G3", "away": "G4", "date": "18 Juin 2026", "venue": "Atlanta" },
-        { "id": 39, "home": "G1", "away": "G3", "date": "22 Juin 2026", "venue": "Kansas City" },
-        { "id": 40, "home": "G4", "away": "G2", "date": "23 Juin 2026", "venue": "Atlanta" },
-        { "id": 41, "home": "G2", "away": "G3", "date": "26 Juin 2026", "venue": "Kansas City" },
-        { "id": 42, "home": "G4", "away": "G1", "date": "26 Juin 2026", "venue": "Atlanta" }
+        {
+          "id": 37,
+          "home": "G1",
+          "away": "G2",
+          "date": "20260617",
+          "venue": "V_KANSAS_CITY"
+        },
+        {
+          "id": 38,
+          "home": "G3",
+          "away": "G4",
+          "date": "20260618",
+          "venue": "V_ATLANTA"
+        },
+        {
+          "id": 39,
+          "home": "G1",
+          "away": "G3",
+          "date": "20260622",
+          "venue": "V_KANSAS_CITY"
+        },
+        {
+          "id": 40,
+          "home": "G4",
+          "away": "G2",
+          "date": "20260623",
+          "venue": "V_ATLANTA"
+        },
+        {
+          "id": 41,
+          "home": "G2",
+          "away": "G3",
+          "date": "20260626",
+          "venue": "V_KANSAS_CITY"
+        },
+        {
+          "id": 42,
+          "home": "G4",
+          "away": "G1",
+          "date": "20260626",
+          "venue": "V_ATLANTA"
+        }
       ]
     },
     {
       "id": "H",
       "name": "Groupe H",
-      "teams": ["H1", "H2", "H3", "H4"],
+      "teams": [
+        "H1",
+        "H2",
+        "H3",
+        "H4"
+      ],
       "matches": [
-        { "id": 43, "home": "H1", "away": "H2", "date": "18 Juin 2026", "venue": "Miami" },
-        { "id": 44, "home": "H3", "away": "H4", "date": "19 Juin 2026", "venue": "Atlanta" },
-        { "id": 45, "home": "H1", "away": "H3", "date": "23 Juin 2026", "venue": "Miami" },
-        { "id": 46, "home": "H4", "away": "H2", "date": "24 Juin 2026", "venue": "Atlanta" },
-        { "id": 47, "home": "H2", "away": "H3", "date": "26 Juin 2026", "venue": "Miami" },
-        { "id": 48, "home": "H4", "away": "H1", "date": "26 Juin 2026", "venue": "Atlanta" }
+        {
+          "id": 43,
+          "home": "H1",
+          "away": "H2",
+          "date": "20260618",
+          "venue": "V_MIAMI"
+        },
+        {
+          "id": 44,
+          "home": "H3",
+          "away": "H4",
+          "date": "20260619",
+          "venue": "V_ATLANTA"
+        },
+        {
+          "id": 45,
+          "home": "H1",
+          "away": "H3",
+          "date": "20260623",
+          "venue": "V_MIAMI"
+        },
+        {
+          "id": 46,
+          "home": "H4",
+          "away": "H2",
+          "date": "20260624",
+          "venue": "V_ATLANTA"
+        },
+        {
+          "id": 47,
+          "home": "H2",
+          "away": "H3",
+          "date": "20260626",
+          "venue": "V_MIAMI"
+        },
+        {
+          "id": 48,
+          "home": "H4",
+          "away": "H1",
+          "date": "20260626",
+          "venue": "V_ATLANTA"
+        }
       ]
     },
     {
       "id": "I",
       "name": "Groupe I",
-      "teams": ["I1", "I2", "I3", "I4"],
+      "teams": [
+        "I1",
+        "I2",
+        "I3",
+        "I4"
+      ],
       "matches": [
-        { "id": 49, "home": "I1", "away": "I2", "date": "19 Juin 2026", "venue": "Boston" },
-        { "id": 50, "home": "I3", "away": "I4", "date": "20 Juin 2026", "venue": "Philadelphia" },
-        { "id": 51, "home": "I1", "away": "I3", "date": "24 Juin 2026", "venue": "Boston" },
-        { "id": 52, "home": "I4", "away": "I2", "date": "25 Juin 2026", "venue": "Philadelphia" },
-        { "id": 53, "home": "I2", "away": "I3", "date": "26 Juin 2026", "venue": "Boston" },
-        { "id": 54, "home": "I4", "away": "I1", "date": "26 Juin 2026", "venue": "Philadelphia" }
+        {
+          "id": 49,
+          "home": "I1",
+          "away": "I2",
+          "date": "20260619",
+          "venue": "V_BOSTON"
+        },
+        {
+          "id": 50,
+          "home": "I3",
+          "away": "I4",
+          "date": "20260620",
+          "venue": "V_PHILADELPHIA"
+        },
+        {
+          "id": 51,
+          "home": "I1",
+          "away": "I3",
+          "date": "20260624",
+          "venue": "V_BOSTON"
+        },
+        {
+          "id": 52,
+          "home": "I4",
+          "away": "I2",
+          "date": "20260625",
+          "venue": "V_PHILADELPHIA"
+        },
+        {
+          "id": 53,
+          "home": "I2",
+          "away": "I3",
+          "date": "20260626",
+          "venue": "V_BOSTON"
+        },
+        {
+          "id": 54,
+          "home": "I4",
+          "away": "I1",
+          "date": "20260626",
+          "venue": "V_PHILADELPHIA"
+        }
       ]
     },
     {
       "id": "J",
       "name": "Groupe J",
-      "teams": ["J1", "J2", "J3", "J4"],
+      "teams": [
+        "J1",
+        "J2",
+        "J3",
+        "J4"
+      ],
       "matches": [
-        { "id": 55, "home": "J1", "away": "J2", "date": "20 Juin 2026", "venue": "Dallas" },
-        { "id": 56, "home": "J3", "away": "J4", "date": "21 Juin 2026", "venue": "Houston" },
-        { "id": 57, "home": "J1", "away": "J3", "date": "25 Juin 2026", "venue": "Dallas" },
-        { "id": 58, "home": "J4", "away": "J2", "date": "26 Juin 2026", "venue": "Houston" },
-        { "id": 59, "home": "J2", "away": "J3", "date": "27 Juin 2026", "venue": "Dallas" },
-        { "id": 60, "home": "J4", "away": "J1", "date": "27 Juin 2026", "venue": "Houston" }
+        {
+          "id": 55,
+          "home": "J1",
+          "away": "J2",
+          "date": "20260620",
+          "venue": "V_DALLAS"
+        },
+        {
+          "id": 56,
+          "home": "J3",
+          "away": "J4",
+          "date": "20260621",
+          "venue": "V_HOUSTON"
+        },
+        {
+          "id": 57,
+          "home": "J1",
+          "away": "J3",
+          "date": "20260625",
+          "venue": "V_DALLAS"
+        },
+        {
+          "id": 58,
+          "home": "J4",
+          "away": "J2",
+          "date": "20260626",
+          "venue": "V_HOUSTON"
+        },
+        {
+          "id": 59,
+          "home": "J2",
+          "away": "J3",
+          "date": "20260627",
+          "venue": "V_DALLAS"
+        },
+        {
+          "id": 60,
+          "home": "J4",
+          "away": "J1",
+          "date": "20260627",
+          "venue": "V_HOUSTON"
+        }
       ]
     },
     {
       "id": "K",
       "name": "Groupe K",
-      "teams": ["K1", "K2", "K3", "K4"],
+      "teams": [
+        "K1",
+        "K2",
+        "K3",
+        "K4"
+      ],
       "matches": [
-        { "id": 61, "home": "K1", "away": "K2", "date": "21 Juin 2026", "venue": "Miami" },
-        { "id": 62, "home": "K3", "away": "K4", "date": "22 Juin 2026", "venue": "Philadelphia" },
-        { "id": 63, "home": "K1", "away": "K3", "date": "25 Juin 2026", "venue": "Miami" },
-        { "id": 64, "home": "K4", "away": "K2", "date": "26 Juin 2026", "venue": "Philadelphia" },
-        { "id": 65, "home": "K2", "away": "K3", "date": "27 Juin 2026", "venue": "Miami" },
-        { "id": 66, "home": "K4", "away": "K1", "date": "27 Juin 2026", "venue": "Philadelphia" }
+        {
+          "id": 61,
+          "home": "K1",
+          "away": "K2",
+          "date": "20260621",
+          "venue": "V_MIAMI"
+        },
+        {
+          "id": 62,
+          "home": "K3",
+          "away": "K4",
+          "date": "20260622",
+          "venue": "V_PHILADELPHIA"
+        },
+        {
+          "id": 63,
+          "home": "K1",
+          "away": "K3",
+          "date": "20260625",
+          "venue": "V_MIAMI"
+        },
+        {
+          "id": 64,
+          "home": "K4",
+          "away": "K2",
+          "date": "20260626",
+          "venue": "V_PHILADELPHIA"
+        },
+        {
+          "id": 65,
+          "home": "K2",
+          "away": "K3",
+          "date": "20260627",
+          "venue": "V_MIAMI"
+        },
+        {
+          "id": 66,
+          "home": "K4",
+          "away": "K1",
+          "date": "20260627",
+          "venue": "V_PHILADELPHIA"
+        }
       ]
     },
     {
       "id": "L",
       "name": "Groupe L",
-      "teams": ["L1", "L2", "L3", "L4"],
+      "teams": [
+        "L1",
+        "L2",
+        "L3",
+        "L4"
+      ],
       "matches": [
-        { "id": 67, "home": "L1", "away": "L2", "date": "22 Juin 2026", "venue": "New York / New Jersey" },
-        { "id": 68, "home": "L3", "away": "L4", "date": "23 Juin 2026", "venue": "Boston" },
-        { "id": 69, "home": "L1", "away": "L3", "date": "26 Juin 2026", "venue": "New York / New Jersey" },
-        { "id": 70, "home": "L4", "away": "L2", "date": "27 Juin 2026", "venue": "Boston" },
-        { "id": 71, "home": "L2", "away": "L3", "date": "27 Juin 2026", "venue": "Philadelphia" },
-        { "id": 72, "home": "L4", "away": "L1", "date": "27 Juin 2026", "venue": "New York / New Jersey" }
+        {
+          "id": 67,
+          "home": "L1",
+          "away": "L2",
+          "date": "20260622",
+          "venue": "V_NY_NJ"
+        },
+        {
+          "id": 68,
+          "home": "L3",
+          "away": "L4",
+          "date": "20260623",
+          "venue": "V_BOSTON"
+        },
+        {
+          "id": 69,
+          "home": "L1",
+          "away": "L3",
+          "date": "20260626",
+          "venue": "V_NY_NJ"
+        },
+        {
+          "id": 70,
+          "home": "L4",
+          "away": "L2",
+          "date": "20260627",
+          "venue": "V_BOSTON"
+        },
+        {
+          "id": 71,
+          "home": "L2",
+          "away": "L3",
+          "date": "20260627",
+          "venue": "V_PHILADELPHIA"
+        },
+        {
+          "id": 72,
+          "home": "L4",
+          "away": "L1",
+          "date": "20260627",
+          "venue": "V_NY_NJ"
+        }
       ]
     }
   ],
@@ -218,63 +686,280 @@
       "roundName": "Seizièmes de finale (32)",
       "roundId": "r32",
       "matches": [
-        { "id": 73, "homePlaceholder": "1er Groupe A", "awayPlaceholder": "3e C/D/I", "date": "28 Juin 2026", "venue": "Los Angeles" },
-        { "id": 74, "homePlaceholder": "1er Groupe B", "awayPlaceholder": "3e E/F/G", "date": "28 Juin 2026", "venue": "Boston" },
-        { "id": 75, "homePlaceholder": "2e Groupe A", "awayPlaceholder": "2e Groupe B", "date": "29 Juin 2026", "venue": "Monterrey" },
-        { "id": 76, "homePlaceholder": "1er Groupe C", "awayPlaceholder": "3e A/B/F", "date": "29 Juin 2026", "venue": "Houston" },
-        { "id": 77, "homePlaceholder": "1er Groupe D", "awayPlaceholder": "3e B/C/F", "date": "30 Juin 2026", "venue": "Dallas" },
-        { "id": 78, "homePlaceholder": "2e Groupe D", "awayPlaceholder": "2e Groupe E", "date": "30 Juin 2026", "venue": "Seattle" },
-        { "id": 79, "homePlaceholder": "1er Groupe E", "awayPlaceholder": "3e A/C/D", "date": "1 Juil 2026", "venue": "Philadelphia" },
-        { "id": 80, "homePlaceholder": "1er Groupe F", "awayPlaceholder": "3e G/H/I", "date": "1 Juil 2026", "venue": "San Francisco" },
-        { "id": 81, "homePlaceholder": "2e Groupe C", "awayPlaceholder": "2e Groupe F", "date": "2 Juil 2026", "venue": "Atlanta" },
-        { "id": 82, "homePlaceholder": "1er Groupe G", "awayPlaceholder": "3e A/E/H", "date": "2 Juil 2026", "venue": "Toronto" },
-        { "id": 83, "homePlaceholder": "1er Groupe H", "awayPlaceholder": "2e Groupe I", "date": "3 Juil 2026", "venue": "Miami" },
-        { "id": 84, "homePlaceholder": "2e Groupe G", "awayPlaceholder": "2e Groupe H", "date": "3 Juil 2026", "venue": "New York" },
-        { "id": 85, "homePlaceholder": "1er Groupe I", "awayPlaceholder": "3e J/K/L", "date": "3 Juil 2026", "venue": "Kansas City" },
-        { "id": 86, "homePlaceholder": "1er Groupe J", "awayPlaceholder": "2e Groupe K", "date": "4 Juil 2026", "venue": "Vancouver" },
-        { "id": 87, "homePlaceholder": "1er Groupe K", "awayPlaceholder": "3e I/J/L", "date": "4 Juil 2026", "venue": "Philadelphia" },
-        { "id": 88, "homePlaceholder": "1er Groupe L", "awayPlaceholder": "2e Groupe L", "date": "4 Juil 2026", "venue": "Mexico (Azteca)" }
+        {
+          "id": 73,
+          "homePlaceholder": "1er Groupe A",
+          "awayPlaceholder": "3e C/D/I",
+          "date": "20260628",
+          "venue": "V_LOS_ANGELES"
+        },
+        {
+          "id": 74,
+          "homePlaceholder": "1er Groupe B",
+          "awayPlaceholder": "3e E/F/G",
+          "date": "20260628",
+          "venue": "V_BOSTON"
+        },
+        {
+          "id": 75,
+          "homePlaceholder": "2e Groupe A",
+          "awayPlaceholder": "2e Groupe B",
+          "date": "20260629",
+          "venue": "V_MONTERREY"
+        },
+        {
+          "id": 76,
+          "homePlaceholder": "1er Groupe C",
+          "awayPlaceholder": "3e A/B/F",
+          "date": "20260629",
+          "venue": "V_HOUSTON"
+        },
+        {
+          "id": 77,
+          "homePlaceholder": "1er Groupe D",
+          "awayPlaceholder": "3e B/C/F",
+          "date": "20260630",
+          "venue": "V_DALLAS"
+        },
+        {
+          "id": 78,
+          "homePlaceholder": "2e Groupe D",
+          "awayPlaceholder": "2e Groupe E",
+          "date": "20260630",
+          "venue": "V_SEATTLE"
+        },
+        {
+          "id": 79,
+          "homePlaceholder": "1er Groupe E",
+          "awayPlaceholder": "3e A/C/D",
+          "date": "20260701",
+          "venue": "V_PHILADELPHIA"
+        },
+        {
+          "id": 80,
+          "homePlaceholder": "1er Groupe F",
+          "awayPlaceholder": "3e G/H/I",
+          "date": "20260701",
+          "venue": "V_SAN_FRANCISCO"
+        },
+        {
+          "id": 81,
+          "homePlaceholder": "2e Groupe C",
+          "awayPlaceholder": "2e Groupe F",
+          "date": "20260702",
+          "venue": "V_ATLANTA"
+        },
+        {
+          "id": 82,
+          "homePlaceholder": "1er Groupe G",
+          "awayPlaceholder": "3e A/E/H",
+          "date": "20260702",
+          "venue": "V_TORONTO"
+        },
+        {
+          "id": 83,
+          "homePlaceholder": "1er Groupe H",
+          "awayPlaceholder": "2e Groupe I",
+          "date": "20260703",
+          "venue": "V_MIAMI"
+        },
+        {
+          "id": 84,
+          "homePlaceholder": "2e Groupe G",
+          "awayPlaceholder": "2e Groupe H",
+          "date": "20260703",
+          "venue": "V_NEW_YORK"
+        },
+        {
+          "id": 85,
+          "homePlaceholder": "1er Groupe I",
+          "awayPlaceholder": "3e J/K/L",
+          "date": "20260703",
+          "venue": "V_KANSAS_CITY"
+        },
+        {
+          "id": 86,
+          "homePlaceholder": "1er Groupe J",
+          "awayPlaceholder": "2e Groupe K",
+          "date": "20260704",
+          "venue": "V_VANCOUVER"
+        },
+        {
+          "id": 87,
+          "homePlaceholder": "1er Groupe K",
+          "awayPlaceholder": "3e I/J/L",
+          "date": "20260704",
+          "venue": "V_PHILADELPHIA"
+        },
+        {
+          "id": 88,
+          "homePlaceholder": "1er Groupe L",
+          "awayPlaceholder": "2e Groupe L",
+          "date": "20260704",
+          "venue": "V_MEXICO_AZTECA"
+        }
       ]
     },
     {
       "roundName": "Huitièmes de finale (16)",
       "roundId": "r16",
       "matches": [
-        { "id": 89, "homePlaceholder": "Vainqueur 73", "awayPlaceholder": "Vainqueur 74", "date": "5 Juil 2026", "venue": "East Rutherford" },
-        { "id": 90, "homePlaceholder": "Vainqueur 75", "awayPlaceholder": "Vainqueur 76", "date": "5 Juil 2026", "venue": "Mexico City" },
-        { "id": 91, "homePlaceholder": "Vainqueur 77", "awayPlaceholder": "Vainqueur 78", "date": "6 Juil 2026", "venue": "Dallas" },
-        { "id": 92, "homePlaceholder": "Vainqueur 79", "awayPlaceholder": "Vainqueur 80", "date": "6 Juil 2026", "venue": "Seattle" },
-        { "id": 93, "homePlaceholder": "Vainqueur 81", "awayPlaceholder": "Vainqueur 82", "date": "7 Juil 2026", "venue": "Atlanta" },
-        { "id": 94, "homePlaceholder": "Vainqueur 83", "awayPlaceholder": "Vainqueur 84", "date": "7 Juil 2026", "venue": "Vancouver" },
-        { "id": 95, "homePlaceholder": "Vainqueur 85", "awayPlaceholder": "Vainqueur 86", "date": "8 Juil 2026", "venue": "Boston" },
-        { "id": 96, "homePlaceholder": "Vainqueur 87", "awayPlaceholder": "Vainqueur 88", "date": "8 Juil 2026", "venue": "Toronto" }
+        {
+          "id": 89,
+          "homePlaceholder": "Vainqueur 73",
+          "awayPlaceholder": "Vainqueur 74",
+          "date": "20260705",
+          "venue": "V_EAST_RUTHERFORD"
+        },
+        {
+          "id": 90,
+          "homePlaceholder": "Vainqueur 75",
+          "awayPlaceholder": "Vainqueur 76",
+          "date": "20260705",
+          "venue": "V_MEXICO_CITY"
+        },
+        {
+          "id": 91,
+          "homePlaceholder": "Vainqueur 77",
+          "awayPlaceholder": "Vainqueur 78",
+          "date": "20260706",
+          "venue": "V_DALLAS"
+        },
+        {
+          "id": 92,
+          "homePlaceholder": "Vainqueur 79",
+          "awayPlaceholder": "Vainqueur 80",
+          "date": "20260706",
+          "venue": "V_SEATTLE"
+        },
+        {
+          "id": 93,
+          "homePlaceholder": "Vainqueur 81",
+          "awayPlaceholder": "Vainqueur 82",
+          "date": "20260707",
+          "venue": "V_ATLANTA"
+        },
+        {
+          "id": 94,
+          "homePlaceholder": "Vainqueur 83",
+          "awayPlaceholder": "Vainqueur 84",
+          "date": "20260707",
+          "venue": "V_VANCOUVER"
+        },
+        {
+          "id": 95,
+          "homePlaceholder": "Vainqueur 85",
+          "awayPlaceholder": "Vainqueur 86",
+          "date": "20260708",
+          "venue": "V_BOSTON"
+        },
+        {
+          "id": 96,
+          "homePlaceholder": "Vainqueur 87",
+          "awayPlaceholder": "Vainqueur 88",
+          "date": "20260708",
+          "venue": "V_TORONTO"
+        }
       ]
     },
     {
       "roundName": "Quarts de finale",
       "roundId": "qf",
       "matches": [
-        { "id": 97, "homePlaceholder": "Vainqueur 89", "awayPlaceholder": "Vainqueur 90", "date": "9 Juil 2026", "venue": "Boston" },
-        { "id": 98, "homePlaceholder": "Vainqueur 91", "awayPlaceholder": "Vainqueur 92", "date": "10 Juil 2026", "venue": "Los Angeles" },
-        { "id": 99, "homePlaceholder": "Vainqueur 93", "awayPlaceholder": "Vainqueur 94", "date": "11 Juil 2026", "venue": "Miami" },
-        { "id": 100, "homePlaceholder": "Vainqueur 95", "awayPlaceholder": "Vainqueur 96", "date": "11 Juil 2026", "venue": "Kansas City" }
+        {
+          "id": 97,
+          "homePlaceholder": "Vainqueur 89",
+          "awayPlaceholder": "Vainqueur 90",
+          "date": "20260709",
+          "venue": "V_BOSTON"
+        },
+        {
+          "id": 98,
+          "homePlaceholder": "Vainqueur 91",
+          "awayPlaceholder": "Vainqueur 92",
+          "date": "20260710",
+          "venue": "V_LOS_ANGELES"
+        },
+        {
+          "id": 99,
+          "homePlaceholder": "Vainqueur 93",
+          "awayPlaceholder": "Vainqueur 94",
+          "date": "20260711",
+          "venue": "V_MIAMI"
+        },
+        {
+          "id": 100,
+          "homePlaceholder": "Vainqueur 95",
+          "awayPlaceholder": "Vainqueur 96",
+          "date": "20260711",
+          "venue": "V_KANSAS_CITY"
+        }
       ]
     },
     {
       "roundName": "Demi-finales",
       "roundId": "sf",
       "matches": [
-        { "id": 101, "homePlaceholder": "Vainqueur 97", "awayPlaceholder": "Vainqueur 98", "date": "14 Juil 2026", "venue": "Dallas" },
-        { "id": 102, "homePlaceholder": "Vainqueur 99", "awayPlaceholder": "Vainqueur 100", "date": "15 Juil 2026", "venue": "Atlanta" }
+        {
+          "id": 101,
+          "homePlaceholder": "Vainqueur 97",
+          "awayPlaceholder": "Vainqueur 98",
+          "date": "20260714",
+          "venue": "V_DALLAS"
+        },
+        {
+          "id": 102,
+          "homePlaceholder": "Vainqueur 99",
+          "awayPlaceholder": "Vainqueur 100",
+          "date": "20260715",
+          "venue": "V_ATLANTA"
+        }
       ]
     },
     {
       "roundName": "Finales",
       "roundId": "final",
       "matches": [
-        { "id": 103, "homePlaceholder": "Perdant 101", "awayPlaceholder": "Perdant 102", "date": "18 Juil 2026", "venue": "Miami (Petite Finale)", "isThirdPlace": true },
-        { "id": 104, "homePlaceholder": "Vainqueur 101", "awayPlaceholder": "Vainqueur 102", "date": "19 Juil 2026", "venue": "New York / New Jersey (Finale)" }
+        {
+          "id": 103,
+          "homePlaceholder": "Perdant 101",
+          "awayPlaceholder": "Perdant 102",
+          "date": "20260718",
+          "venue": "V_MIAMI_PETITE_FINALE",
+          "isThirdPlace": true
+        },
+        {
+          "id": 104,
+          "homePlaceholder": "Vainqueur 101",
+          "awayPlaceholder": "Vainqueur 102",
+          "date": "20260719",
+          "venue": "V_NY_NJ_FINALE"
+        }
       ]
     }
-  ]
+  ],
+  "venues": {
+    "V_ATLANTA": "Atlanta",
+    "V_ATLANTA_MERCEDES": "Atlanta (Mercedes-Benz Stadium)",
+    "V_BOSTON": "Boston",
+    "V_DALLAS": "Dallas",
+    "V_EAST_RUTHERFORD": "East Rutherford",
+    "V_GUADALAJARA": "Guadalajara (Zapopan)",
+    "V_HOUSTON": "Houston",
+    "V_KANSAS_CITY": "Kansas City",
+    "V_LOS_ANGELES": "Los Angeles",
+    "V_MEXICO_AZTECA": "Mexico (Azteca)",
+    "V_MEXICO_CITY": "Mexico City",
+    "V_MIAMI": "Miami",
+    "V_MIAMI_PETITE_FINALE": "Miami (Petite Finale)",
+    "V_MONTERREY": "Monterrey",
+    "V_NEW_YORK": "New York",
+    "V_NY_NJ": "New York / New Jersey",
+    "V_NY_NJ_FINALE": "New York / New Jersey (Finale)",
+    "V_PHILADELPHIA": "Philadelphia",
+    "V_SAN_FRANCISCO": "San Francisco",
+    "V_SEATTLE": "Seattle",
+    "V_TORONTO": "Toronto",
+    "V_VANCOUVER": "Vancouver"
+  }
 }
