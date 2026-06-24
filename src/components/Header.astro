@@ -1,6 +1,7 @@
 ---
 // Header.astro
 import { useTranslations } from '../i18n/ui';
+import { getRelativeLocaleUrl } from 'astro:i18n';
 
 interface Props {
   lang: 'en' | 'es' | 'fr';
@@ -52,11 +53,11 @@ const t = useTranslations(lang);
     <div class="nav-controls">
       <!-- Language Picker -->
       <div class="lang-picker">
-        <a href="/" class={`lang-link ${lang === 'en' ? 'active' : ''}`} aria-label="English">EN</a>
+        <a href={getRelativeLocaleUrl('en', '/')} class={`lang-link ${lang === 'en' ? 'active' : ''}`} aria-label="English">EN</a>
         <span class="divider">|</span>
-        <a href="/es/" class={`lang-link ${lang === 'es' ? 'active' : ''}`} aria-label="Español">ES</a>
+        <a href={getRelativeLocaleUrl('es', '/')} class={`lang-link ${lang === 'es' ? 'active' : ''}`} aria-label="Español">ES</a>
         <span class="divider">|</span>
-        <a href="/fr/" class={`lang-link ${lang === 'fr' ? 'active' : ''}`} aria-label="Français">FR</a>
+        <a href={getRelativeLocaleUrl('fr', '/')} class={`lang-link ${lang === 'fr' ? 'active' : ''}`} aria-label="Français">FR</a>
       </div>
 
       <nav class="header-nav">
