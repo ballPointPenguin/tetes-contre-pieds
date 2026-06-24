@@ -2,6 +2,7 @@
 // GroupStage.astro
 import MatchCard from './MatchCard.astro';
 import { useTranslations } from '../i18n/ui';
+import wcData from '../data/wc2026.json';
 
 interface Match {
   id: number;
@@ -18,13 +19,34 @@ interface Group {
   matches: Match[];
 }
 
+interface StandingRow {
+  team: string;
+  played: number;
+  win: number;
+  draw: number;
+  loss: number;
+  gf: number;
+  ga: number;
+  gd: number;
+  pts: number;
+}
+
 interface Props {
   groups: Group[];
+  standings: Record<string, StandingRow[]>;
   lang: 'en' | 'es' | 'fr';
 }
 
-const { groups, lang } = Astro.props;
+const { groups, standings, lang } = Astro.props;
 const t = useTranslations(lang);
+
+// Build a map of team name -> type ("pieds" | "tetes") from wcData
+const teamTypes: Record<string, 'pieds' | 'tetes'> = {};
+wcData.groups.forEach(group => {
+  group.teams.forEach((teamName, index) => {
+    teamTypes[teamName] = (index % 2 === 0) ? 'pieds' : 'tetes';
+  });
+});
 
 // Localized Group name helper
 const getGroupName = (name: string) => {
@@ -35,15 +57,11 @@ const getGroupName = (name: string) => {
 
 // Helper to determine team type badge
 const getTeamTypeBadge = (teamName: string) => {
-  const numPart = teamName.replace(/[^0-9]/g, "");
-  const num = parseInt(numPart) || 1;
-  return num % 2 !== 0 ? `🦶 ${t('badge.pieds')}` : `👤 ${t('badge.tetes')}`;
+  return teamTypes[teamName] === 'pieds' ? `🦶 ${t('badge.pieds')}` : `👤 ${t('badge.tetes')}`;
 };
 
 const getTeamTypeClass = (teamName: string) => {
-  const numPart = teamName.replace(/[^0-9]/g, "");
-  const num = parseInt(numPart) || 1;
-  return num % 2 !== 0 ? "text-pieds" : "text-tetes";
+  return teamTypes[teamName] === 'pieds' ? "text-pieds" : "text-tetes";
 };
 ---
 
@@ -92,18 +110,18 @@ const getTeamTypeClass = (teamName: string) => {
               </tr>
             </thead>
             <tbody data-group-tbody={group.id}>
-              {group.teams.map((team, index) => (
+              {(standings[group.id] || []).map((row, index) => (
                 <tr>
                   <td class="col-pos pos-cell">{index + 1}</td>
-                  <td class="col-team team-cell font-display">{team}</td>
-                  <td class={`col-type type-cell ${getTeamTypeClass(team)}`}>
-                    {getTeamTypeBadge(team)}
+                  <td class="col-team team-cell font-display">{row.team}</td>
+                  <td class={`col-type type-cell ${getTeamTypeClass(row.team)}`}>
+                    {getTeamTypeBadge(row.team)}
                   </td>
-                  <td class="col-stat stat-cell">0</td>
-                  <td class="col-stat stat-cell">0</td>
-                  <td class="col-stat stat-cell">0</td>
-                  <td class="col-stat stat-cell">0</td>
-                  <td class="col-pts pts-cell font-display">0</td>
+                  <td class="col-stat stat-cell">{row.played}</td>
+                  <td class="col-stat stat-cell">{row.win}</td>
+                  <td class="col-stat stat-cell">{row.draw}</td>
+                  <td class="col-stat stat-cell">{row.loss}</td>
+                  <td class="col-pts pts-cell font-display">{row.pts}</td>
                 </tr>
               ))}
             </tbody>
@@ -120,6 +138,7 @@ const getTeamTypeClass = (teamName: string) => {
               away={match.away}
               date={match.date}
               venue={match.venue}
+              result={(match as any).result}
             />
           ))}
         </div>

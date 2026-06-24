@@ -39,6 +39,7 @@ export const ui = {
     'round.final': 'Finals',
     'round.final.label': 'Final',
     'round.third.label': 'Third Place',
+    'header.matches_completed': 'Matches completed',
   },
   es: {
     'nav.groups': 'Fase de Grupos',
@@ -72,6 +73,7 @@ export const ui = {
     'round.final': 'Finales',
     'round.final.label': 'Final',
     'round.third.label': 'Tercer Puesto',
+    'header.matches_completed': 'Partidos jugados',
   },
   fr: {
     'nav.groups': 'Phase de Groupes',
@@ -105,6 +107,7 @@ export const ui = {
     'round.final': 'Finales',
     'round.final.label': 'Finale',
     'round.third.label': 'Petite Finale',
+    'header.matches_completed': 'Matchs complétés',
   },
 } as const;
 

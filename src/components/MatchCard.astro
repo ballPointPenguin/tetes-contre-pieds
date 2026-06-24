@@ -1,5 +1,15 @@
 ---
 // MatchCard.astro
+import wcData from '../data/wc2026.json';
+
+interface MatchResult {
+  homeScore: number;
+  awayScore: number;
+  feetGoals: number;
+  headGoals: number;
+  otherGoals: number;
+}
+
 interface Props {
   id: number;
   home: string;
@@ -9,22 +19,21 @@ interface Props {
   isKnockout?: boolean;
   homePlaceholder?: string;
   awayPlaceholder?: string;
+  result?: MatchResult;
 }
 
-const { id, home, away, date, venue, isKnockout = false, homePlaceholder = "", awayPlaceholder = "" } = Astro.props;
+const { id, home, away, date, venue, isKnockout = false, homePlaceholder = "", awayPlaceholder = "", result } = Astro.props;
 
-// Determine team type based on their name suffix
-// e.g., odd numbers (A1, A3) are Pieds, even numbers (A2, A4) are Têtes.
-const getTeamType = (teamName: string) => {
-  if (!teamName) return "unknown";
-  const numPart = teamName.replace(/[^0-9]/g, "");
-  if (!numPart) return "unknown";
-  const num = parseInt(numPart);
-  return num % 2 !== 0 ? "pieds" : "tetes";
-};
+// Build a map of team name -> type ("pieds" | "tetes") from wcData
+const teamTypes: Record<string, 'pieds' | 'tetes'> = {};
+wcData.groups.forEach(group => {
+  group.teams.forEach((teamName, index) => {
+    teamTypes[teamName] = (index % 2 === 0) ? 'pieds' : 'tetes';
+  });
+});
 
-const homeType = getTeamType(home);
-const awayType = getTeamType(away);
+const homeType = home ? teamTypes[home] : "unknown";
+const awayType = away ? teamTypes[away] : "unknown";
 ---
 
 <div 
@@ -67,7 +76,11 @@ const awayType = getTeamType(away);
     <!-- VS Divider -->
     <div class="match-vs-divider">
       <span class="vs-line"></span>
-      <span class="vs-text">VS</span>
+      {result ? (
+        <span class="score-text font-display">{result.homeScore} - {result.awayScore}</span>
+      ) : (
+        <span class="vs-text">VS</span>
+      )}
       <span class="vs-line"></span>
     </div>
 
@@ -91,6 +104,20 @@ const awayType = getTeamType(away);
       </div>
     </div>
   </div>
+
+  <!-- Têtes-Pieds Breakdown Footer -->
+  {result && (
+    <div class="match-breakdown-footer">
+      <div class="breakdown-content">
+        <span class="breakdown-label">Têtes-Pieds</span>
+        <div class="breakdown-goals">
+          <span class="goal-stat pieds">🦶 {result.feetGoals}</span>
+          <span class="goal-stat-separator">-</span>
+          <span class="goal-stat tetes">{result.headGoals} 👤</span>
+        </div>
+      </div>
+    </div>
+  )}
 </div>
 
 <style>
@@ -193,7 +220,7 @@ const awayType = getTeamType(away);
     align-items: center;
     justify-content: center;
     gap: 12px;
-    height: 14px;
+    height: 24px;
   }
 
   .vs-line {
@@ -208,5 +235,60 @@ const awayType = getTeamType(away);
     font-weight: 800;
     color: var(--text-muted);
     letter-spacing: 0.1em;
+  }
+
+  .score-text {
+    font-size: 0.95rem;
+    font-weight: 800;
+    color: #fff;
+    background: rgba(255, 255, 255, 0.06);
+    padding: 3px 8px;
+    border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    min-width: 50px;
+    text-align: center;
+    letter-spacing: 0.05em;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  }
+
+  .match-breakdown-footer {
+    margin-top: 4px;
+    padding-top: 8px;
+    border-top: 1px dashed rgba(255, 255, 255, 0.06);
+  }
+
+  .breakdown-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.7rem;
+    font-family: var(--font-display);
+    font-weight: 600;
+  }
+
+  .breakdown-label {
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .breakdown-goals {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .goal-stat.pieds {
+    color: var(--color-pieds);
+    text-shadow: 0 0 6px var(--color-pieds-glow);
+  }
+
+  .goal-stat.tetes {
+    color: var(--color-tetes);
+    text-shadow: 0 0 6px var(--color-tetes-glow);
+  }
+
+  .goal-stat-separator {
+    color: var(--text-muted);
   }
 </style>

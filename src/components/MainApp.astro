@@ -13,6 +13,96 @@ interface Props {
 const { lang } = Astro.props;
 const t = useTranslations(lang);
 const { groups, knockouts } = wcData;
+
+// --- Server-Side Calculations ---
+
+interface StandingRow {
+  team: string;
+  played: number;
+  win: number;
+  draw: number;
+  loss: number;
+  gf: number;
+  ga: number;
+  gd: number;
+  pts: number;
+}
+
+const standings: Record<string, StandingRow[]> = {};
+let totalPieds = 0;
+let totalTetes = 0;
+let completedMatches = 0;
+
+groups.forEach(group => {
+  const teamMap: Record<string, StandingRow> = {};
+  group.teams.forEach(team => {
+    teamMap[team] = {
+      team,
+      played: 0,
+      win: 0,
+      draw: 0,
+      loss: 0,
+      gf: 0,
+      ga: 0,
+      gd: 0,
+      pts: 0
+    };
+  });
+
+  group.matches.forEach(match => {
+    const m = match as any;
+    if (m.result) {
+      const res = m.result;
+      totalPieds += res.feetGoals || 0;
+      totalTetes += res.headGoals || 0;
+      completedMatches++;
+
+      const homeRow = teamMap[match.home];
+      const awayRow = teamMap[match.away];
+
+      if (homeRow && awayRow) {
+        homeRow.played++;
+        awayRow.played++;
+        
+        homeRow.gf += res.homeScore;
+        homeRow.ga += res.awayScore;
+        awayRow.gf += res.awayScore;
+        awayRow.ga += res.homeScore;
+
+        if (res.homeScore > res.awayScore) {
+          homeRow.win++;
+          homeRow.pts += 3;
+          awayRow.loss++;
+        } else if (res.homeScore < res.awayScore) {
+          awayRow.win++;
+          awayRow.pts += 3;
+          homeRow.loss++;
+        } else {
+          homeRow.draw++;
+          awayRow.draw++;
+          homeRow.pts += 1;
+          awayRow.pts += 1;
+        }
+      }
+    }
+  });
+
+  // Calculate goal differences and convert to array
+  const rows = Object.values(teamMap).map(row => {
+    row.gd = row.gf - row.ga;
+    return row;
+  });
+
+  // Sort standings: Pts desc, GD desc, Wins desc, Name alphabetical asc
+  rows.sort((a, b) => {
+    if (b.pts !== a.pts) return b.pts - a.pts;
+    if (b.gd !== a.gd) return b.gd - a.gd;
+    if (b.win !== a.win) return b.win - a.win;
+    return a.team.localeCompare(b.team);
+  });
+
+  standings[group.id] = rows;
+});
 ---
 
 <html lang={lang}>
@@ -33,14 +123,14 @@ const { groups, knockouts } = wcData;
     <meta property="og:type" content="website" />
   </head>
   <body data-lang={lang}>
-    <!-- Brand Header -->
-    <Header lang={lang} />
+    <!-- Brand Header with pre-calculated scores -->
+    <Header lang={lang} totalPieds={totalPieds} totalTetes={totalTetes} completedMatches={completedMatches} />
 
     <!-- Main View Canvas -->
     <main class="main-content container">
       <!-- Section 1: Group Stage (Active by default) -->
       <section id="view-groups" class="tab-view active">
-        <GroupStage groups={groups} lang={lang} />
+        <GroupStage groups={groups} standings={standings} lang={lang} />
       </section>
 
       <!-- Section 2: Knockout Bracket -->

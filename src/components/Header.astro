@@ -5,10 +5,17 @@ import { getRelativeLocaleUrl } from 'astro:i18n';
 
 interface Props {
   lang: 'en' | 'es' | 'fr';
+  totalPieds: number;
+  totalTetes: number;
+  completedMatches: number;
 }
 
-const { lang } = Astro.props;
+const { lang, totalPieds, totalTetes, completedMatches } = Astro.props;
 const t = useTranslations(lang);
+
+const totalGoals = totalPieds + totalTetes;
+const piedsPct = totalGoals > 0 ? Math.round((totalPieds / totalGoals) * 100) : 50;
+const tetesPct = totalGoals > 0 ? 100 - piedsPct : 50;
 ---
 
 <header class="main-header glass-panel">
@@ -31,6 +38,31 @@ const t = useTranslations(lang);
       <div class="logo-text">
         <h1>{t('title')}</h1>
         <p class="tagline">{t('subtitle')}</p>
+      </div>
+    </div>
+
+    <!-- Global Scoreboard Ratio Bar -->
+    <div class="header-scoreboard">
+      <div class="scoreboard-stats">
+        <div class="stat-group pieds">
+          <span class="stat-icon">🦶</span>
+          <span class="stat-count font-display">{totalPieds}</span>
+          <span class="stat-pct font-display">{piedsPct}%</span>
+        </div>
+        
+        <div class="scoreboard-bar-wrapper">
+          <div class="scoreboard-bar">
+            <div class="bar-fill pieds" style={`width: ${piedsPct}%`}></div>
+            <div class="bar-fill tetes" style={`width: ${tetesPct}%`}></div>
+          </div>
+          <span class="matches-completed-label">{t('header.matches_completed')} : {completedMatches} / 72</span>
+        </div>
+
+        <div class="stat-group tetes">
+          <span class="stat-pct font-display">{tetesPct}%</span>
+          <span class="stat-count font-display">{totalTetes}</span>
+          <span class="stat-icon">👤</span>
+        </div>
       </div>
     </div>
 
@@ -229,7 +261,98 @@ const t = useTranslations(lang);
     transform: translateX(100%);
   }
 
+  /* Scoreboard Styles */
+  .header-scoreboard {
+    flex: 1;
+    max-width: 480px;
+    background: rgba(0, 0, 0, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    border-radius: 12px;
+    padding: 8px 16px;
+    margin: 0 16px;
+  }
+
+  .scoreboard-stats {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+
+  .stat-group {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.85rem;
+    font-weight: 700;
+  }
+
+  .stat-group.pieds {
+    color: var(--color-pieds);
+  }
+
+  .stat-group.tetes {
+    color: var(--color-tetes);
+  }
+
+  .stat-count {
+    font-size: 1.1rem;
+    font-weight: 800;
+  }
+
+  .stat-pct {
+    font-size: 0.75rem;
+    opacity: 0.8;
+  }
+
+  .scoreboard-bar-wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .scoreboard-bar {
+    width: 100%;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 4px;
+    overflow: hidden;
+    display: flex;
+  }
+
+  .bar-fill {
+    height: 100%;
+    transition: width 0.5s ease;
+  }
+
+  .bar-fill.pieds {
+    background: linear-gradient(90deg, var(--color-pieds-dark), var(--color-pieds));
+    box-shadow: 0 0 8px var(--color-pieds-glow);
+  }
+
+  .bar-fill.tetes {
+    background: linear-gradient(90deg, var(--color-tetes), var(--color-tetes-dark));
+    box-shadow: 0 0 8px var(--color-tetes-glow);
+  }
+
+  .matches-completed-label {
+    font-size: 0.65rem;
+    font-family: var(--font-display);
+    font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
   /* Responsive styling */
+  @media (max-width: 1024px) {
+    .header-scoreboard {
+      margin: 0 8px;
+    }
+  }
+
   @media (max-width: 768px) {
     .header-container {
       flex-direction: column;
@@ -238,6 +361,11 @@ const t = useTranslations(lang);
     }
     .brand {
       justify-content: center;
+    }
+    .header-scoreboard {
+      width: 100%;
+      max-width: 480px;
+      margin: 8px 0;
     }
     .nav-controls {
       justify-content: space-between;

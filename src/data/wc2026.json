@@ -3,14 +3,27 @@
     {
       "id": "A",
       "name": "Groupe A",
-      "teams": ["A1", "A2", "A3", "A4"],
+      "teams": ["Mexique", "Afrique du Sud", "Corée du Sud", "Tchéquie"],
       "matches": [
-        { "id": 1, "home": "A1", "away": "A2", "date": "11 Juin 2026", "venue": "Mexico (Azteca)" },
-        { "id": 2, "home": "A3", "away": "A4", "date": "12 Juin 2026", "venue": "Guadalajara" },
-        { "id": 3, "home": "A1", "away": "A3", "date": "17 Juin 2026", "venue": "Mexico (Azteca)" },
-        { "id": 4, "home": "A4", "away": "A2", "date": "18 Juin 2026", "venue": "Guadalajara" },
-        { "id": 5, "home": "A2", "away": "A3", "date": "24 Juin 2026", "venue": "Monterrey" },
-        { "id": 6, "home": "A4", "away": "A1", "date": "24 Juin 2026", "venue": "Mexico (Azteca)" }
+        { 
+          "id": 1, 
+          "home": "Mexique", 
+          "away": "Afrique du Sud", 
+          "date": "11 Juin 2026", 
+          "venue": "Mexico (Azteca)",
+          "result": {
+            "homeScore": 2,
+            "awayScore": 0,
+            "feetGoals": 1,
+            "headGoals": 1,
+            "otherGoals": 0
+          }
+        },
+        { "id": 2, "home": "Corée du Sud", "away": "Tchéquie", "date": "12 Juin 2026", "venue": "Guadalajara" },
+        { "id": 3, "home": "Mexique", "away": "Corée du Sud", "date": "17 Juin 2026", "venue": "Mexico (Azteca)" },
+        { "id": 4, "home": "Tchéquie", "away": "Afrique du Sud", "date": "18 Juin 2026", "venue": "Guadalajara" },
+        { "id": 5, "home": "Afrique du Sud", "away": "Corée du Sud", "date": "24 Juin 2026", "venue": "Monterrey" },
+        { "id": 6, "home": "Tchéquie", "away": "Mexique", "date": "24 Juin 2026", "venue": "Mexico (Azteca)" }
       ]
     },
     {
