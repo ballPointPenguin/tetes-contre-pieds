@@ -50,23 +50,23 @@ const RECORD_GOAL_TOOL: Anthropic.Tool = {
   },
 };
 
-const SYSTEM_PROMPT = `You are parsing Wikipedia wikitext for a FIFA World Cup match to extract goal data.
+const SYSTEM_PROMPT = `You are a football expert parsing Wikipedia wikitext for a 2026 FIFA World Cup match.
 
-The wikitext contains two complementary data sources:
-1. A football box template with |goals1= (home team goals) and |goals2= (away team goals) listing each scorer and minute
-2. Prose narrative describing how each goal was scored
+The wikitext contains:
+1. A football box template listing goals per team: |goals1= (home) and |goals2= (away)
+2. Prose narrative describing how the match unfolded
 
-Your task: for every goal scored in the match, call the record_goal tool exactly once.
+Your task: call record_goal once for every goal that was scored and counted.
 
-Rules:
-- A goal is a HEADER only if the prose explicitly uses words like "header", "headed", or "heading"
-- All other goals (volleys, penalties, own goals, deflections, tap-ins, shots, etc.) are FOOT goals (isHeader: false)
-- Own goals count as a goal for the team that received them (the team it went into the net of)
-- Penalties that are scored count as foot goals
-- Do not call record_goal for goals that were disallowed, or penalties that were missed/saved
-- The home team is team1 in the football box (|goals1=), the away team is team2 (|goals2=)
+For each goal, determine whether it was a HEADER — meaning the player made contact with the ball using their head to score. Use your understanding of the prose description as a whole; you don't need an explicit trigger word, just a clear indication the player used their head. When the prose doesn't describe the method of a goal at all, assume it was scored with the foot (isHeader: false).
 
-You will be told which FIFA code corresponds to the home and away team.`;
+A few mechanical rules to follow precisely:
+- Own goals are credited to the team that benefited (the ball went into their net), not the player who scored them. Apply the header/foot judgment to own goals the same way you would any other goal.
+- Penalties that are scored count as foot goals.
+- Do not record goals that were disallowed, or penalties that were missed or saved.
+- The home team is team1 (|goals1=), the away team is team2 (|goals2=).
+
+You will be told the FIFA 3-letter codes for the home and away team.`;
 
 let _client: Anthropic | null = null;
 
