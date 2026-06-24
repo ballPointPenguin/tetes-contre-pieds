@@ -101,42 +101,90 @@
           "home": "CAN",
           "away": "BIH",
           "date": "20260612",
-          "venue": "V_TORONTO"
+          "venue": "V_TORONTO",
+          "result": {
+            "homeScore": 1,
+            "awayScore": 1,
+            "homeFeetGoals": 1,
+            "homeHeadGoals": 0,
+            "awayFeetGoals": 0,
+            "awayHeadGoals": 1
+          }
         },
         {
           "id": 8,
           "home": "QAT",
           "away": "SUI",
           "date": "20260613",
-          "venue": "V_VANCOUVER"
+          "venue": "V_VANCOUVER",
+          "result": {
+            "homeScore": 1,
+            "awayScore": 1,
+            "homeFeetGoals": 1,
+            "homeHeadGoals": 0,
+            "awayFeetGoals": 1,
+            "awayHeadGoals": 0
+          }
         },
         {
           "id": 9,
           "home": "CAN",
           "away": "QAT",
           "date": "20260617",
-          "venue": "V_TORONTO"
+          "venue": "V_TORONTO",
+          "result": {
+            "homeScore": 6,
+            "awayScore": 0,
+            "homeFeetGoals": 6,
+            "homeHeadGoals": 0,
+            "awayFeetGoals": 0,
+            "awayHeadGoals": 0
+          }
         },
         {
           "id": 10,
           "home": "SUI",
           "away": "BIH",
           "date": "20260618",
-          "venue": "V_VANCOUVER"
+          "venue": "V_VANCOUVER",
+          "result": {
+            "homeScore": 4,
+            "awayScore": 1,
+            "homeFeetGoals": 4,
+            "homeHeadGoals": 0,
+            "awayFeetGoals": 1,
+            "awayHeadGoals": 0
+          }
         },
         {
           "id": 11,
           "home": "BIH",
           "away": "QAT",
           "date": "20260624",
-          "venue": "V_TORONTO"
+          "venue": "V_TORONTO",
+          "result": {
+            "homeScore": 0,
+            "awayScore": 0,
+            "homeFeetGoals": 0,
+            "homeHeadGoals": 0,
+            "awayFeetGoals": 0,
+            "awayHeadGoals": 0
+          }
         },
         {
           "id": 12,
           "home": "SUI",
           "away": "CAN",
           "date": "20260624",
-          "venue": "V_VANCOUVER"
+          "venue": "V_VANCOUVER",
+          "result": {
+            "homeScore": 0,
+            "awayScore": 0,
+            "homeFeetGoals": 0,
+            "homeHeadGoals": 0,
+            "awayFeetGoals": 0,
+            "awayHeadGoals": 0
+          }
         }
       ]
     },
