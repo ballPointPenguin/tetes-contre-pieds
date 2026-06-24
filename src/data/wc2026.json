@@ -34,7 +34,20 @@
           }
         },
         { "id": 3, "home": "Mexique", "away": "Corée du Sud", "date": "17 Juin 2026", "venue": "Mexico (Azteca)" },
-        { "id": 4, "home": "Tchéquie", "away": "Afrique du Sud", "date": "18 Juin 2026", "venue": "Guadalajara" },
+        { 
+          "id": 4, 
+          "home": "Tchéquie", 
+          "away": "Afrique du Sud", 
+          "date": "18 Juin 2026", 
+          "venue": "Atlanta (Mercedes-Benz Stadium)",
+          "result": {
+            "homeScore": 1,
+            "awayScore": 1,
+            "feetGoals": 2,
+            "headGoals": 0,
+            "otherGoals": 0
+          }
+        },
         { "id": 5, "home": "Afrique du Sud", "away": "Corée du Sud", "date": "24 Juin 2026", "venue": "Monterrey" },
         { "id": 6, "home": "Tchéquie", "away": "Mexique", "date": "24 Juin 2026", "venue": "Mexico (Azteca)" }
       ]
