@@ -19,7 +19,20 @@
             "otherGoals": 0
           }
         },
-        { "id": 2, "home": "Corée du Sud", "away": "Tchéquie", "date": "12 Juin 2026", "venue": "Guadalajara" },
+        { 
+          "id": 2, 
+          "home": "Corée du Sud", 
+          "away": "Tchéquie", 
+          "date": "12 Juin 2026", 
+          "venue": "Guadalajara (Zapopan)",
+          "result": {
+            "homeScore": 2,
+            "awayScore": 1,
+            "feetGoals": 2,
+            "headGoals": 1,
+            "otherGoals": 0
+          }
+        },
         { "id": 3, "home": "Mexique", "away": "Corée du Sud", "date": "17 Juin 2026", "venue": "Mexico (Azteca)" },
         { "id": 4, "home": "Tchéquie", "away": "Afrique du Sud", "date": "18 Juin 2026", "venue": "Guadalajara" },
         { "id": 5, "home": "Afrique du Sud", "away": "Corée du Sud", "date": "24 Juin 2026", "venue": "Monterrey" },
