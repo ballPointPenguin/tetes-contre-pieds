@@ -1,6 +1,7 @@
 ---
 // MatchCard.astro
 import wcData from '../data/wc2026.json';
+import { useTranslations } from '../i18n/ui';
 
 interface MatchResult {
   homeScore: number;
@@ -20,9 +21,11 @@ interface Props {
   homePlaceholder?: string;
   awayPlaceholder?: string;
   result?: MatchResult;
+  lang: 'en' | 'es' | 'fr';
 }
 
-const { id, home, away, date, venue, isKnockout = false, homePlaceholder = "", awayPlaceholder = "", result } = Astro.props;
+const { id, home, away, date, venue, isKnockout = false, homePlaceholder = "", awayPlaceholder = "", result, lang } = Astro.props;
+const t = useTranslations(lang);
 
 // Build a map of team name -> type ("pieds" | "tetes") from wcData
 const teamTypes: Record<string, 'pieds' | 'tetes'> = {};
@@ -56,7 +59,7 @@ const awayType = away ? teamTypes[away] : "unknown";
     <!-- Home Team -->
     <div class="team-row" data-team="home">
       <div class="team-badge-wrapper">
-        <span class="team-name" data-team-text="home">{home || homePlaceholder}</span>
+        <span class="team-name" data-team-text="home">{home ? t(home as any) : homePlaceholder}</span>
       </div>
       <div class="team-type-badge-container" data-team-badge="home">
         {home && (
@@ -87,7 +90,7 @@ const awayType = away ? teamTypes[away] : "unknown";
     <!-- Away Team -->
     <div class="team-row" data-team="away">
       <div class="team-badge-wrapper">
-        <span class="team-name" data-team-text="away">{away || awayPlaceholder}</span>
+        <span class="team-name" data-team-text="away">{away ? t(away as any) : awayPlaceholder}</span>
       </div>
       <div class="team-type-badge-container" data-team-badge="away">
         {away && (

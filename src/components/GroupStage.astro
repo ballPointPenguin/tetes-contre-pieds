@@ -113,7 +113,7 @@ const getTeamTypeClass = (teamName: string) => {
               {(standings[group.id] || []).map((row, index) => (
                 <tr>
                   <td class="col-pos pos-cell">{index + 1}</td>
-                  <td class="col-team team-cell font-display">{row.team}</td>
+                  <td class="col-team team-cell font-display">{t(row.team as any)}</td>
                   <td class={`col-type type-cell ${getTeamTypeClass(row.team)}`}>
                     {getTeamTypeBadge(row.team)}
                   </td>
@@ -139,6 +139,7 @@ const getTeamTypeClass = (teamName: string) => {
               date={match.date}
               venue={match.venue}
               result={(match as any).result}
+              lang={lang}
             />
           ))}
         </div>

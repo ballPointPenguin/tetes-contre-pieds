@@ -40,6 +40,10 @@ export const ui = {
     'round.final.label': 'Final',
     'round.third.label': 'Third Place',
     'header.matches_completed': 'Matches completed',
+    'Mexique': 'Mexico',
+    'Afrique du Sud': 'South Africa',
+    'Corée du Sud': 'South Korea',
+    'Tchéquie': 'Czechia',
   },
   es: {
     'nav.groups': 'Fase de Grupos',
@@ -74,6 +78,10 @@ export const ui = {
     'round.final.label': 'Final',
     'round.third.label': 'Tercer Puesto',
     'header.matches_completed': 'Partidos jugados',
+    'Mexique': 'México',
+    'Afrique du Sud': 'Sudáfrica',
+    'Corée du Sud': 'Corea del Sur',
+    'Tchéquie': 'Chequia',
   },
   fr: {
     'nav.groups': 'Phase de Groupes',
@@ -108,6 +116,10 @@ export const ui = {
     'round.final.label': 'Finale',
     'round.third.label': 'Petite Finale',
     'header.matches_completed': 'Matchs complétés',
+    'Mexique': 'Mexique',
+    'Afrique du Sud': 'Afrique du Sud',
+    'Corée du Sud': 'Corée du Sud',
+    'Tchéquie': 'Tchéquie',
   },
 } as const;
 
