@@ -1,0 +1,288 @@
+---
+// KnockoutBracket.astro
+import MatchCard from './MatchCard.astro';
+import { useTranslations, type ui } from '../i18n/ui';
+
+interface KnockoutMatch {
+  id: number;
+  homePlaceholder: string;
+  awayPlaceholder: string;
+  date: string;
+  venue: string;
+  isThirdPlace?: boolean;
+}
+
+interface KnockoutRound {
+  roundName: string;
+  roundId: string;
+  matches: KnockoutMatch[];
+}
+
+interface Props {
+  knockouts: KnockoutRound[];
+  lang: 'en' | 'es' | 'fr';
+}
+
+const { knockouts, lang } = Astro.props;
+const t = useTranslations(lang);
+
+// Server-side placeholder translation helper
+function translatePlaceholderServer(text: string) {
+  if (!text) return '';
+  if (text.startsWith('1er Groupe ')) {
+    const group = text.replace('1er Groupe ', '');
+    if (lang === 'en') return `1st Group ${group}`;
+    if (lang === 'es') return `1º Grupo ${group}`;
+    return `1er Groupe ${group}`;
+  }
+  if (text.startsWith('2e Groupe ')) {
+    const group = text.replace('2e Groupe ', '');
+    if (lang === 'en') return `2nd Group ${group}`;
+    if (lang === 'es') return `2º Grupo ${group}`;
+    return `2e Groupe ${group}`;
+  }
+  if (text.startsWith('3e ')) {
+    const group = text.replace('3e ', '');
+    if (lang === 'en') return `3rd ${group}`;
+    if (lang === 'es') return `3º ${group}`;
+    return `3e ${group}`;
+  }
+  if (text.startsWith('Vainqueur ')) {
+    const matchNum = text.replace('Vainqueur ', '');
+    if (lang === 'en') return `Winner ${matchNum}`;
+    if (lang === 'es') return `Ganador ${matchNum}`;
+    return `Vainqueur ${matchNum}`;
+  }
+  if (text.startsWith('Perdant ')) {
+    const matchNum = text.replace('Perdant ', '');
+    if (lang === 'en') return `Loser ${matchNum}`;
+    if (lang === 'es') return `Perdedor ${matchNum}`;
+    return `Perdant ${matchNum}`;
+  }
+  return text;
+}
+---
+
+<div class="bracket-view">
+  <!-- Round Selector for Mobile View (Toggles active column) -->
+  <div class="bracket-round-nav glass-panel">
+    <div class="round-nav-container">
+      {knockouts.map((round, index) => (
+        <button 
+          class={`round-nav-btn ${index === 0 ? 'active' : ''}`}
+          data-round-tab={round.roundId}
+        >
+          {round.roundId === 'r32' && (lang === 'en' ? 'R32' : '1/16')}
+          {round.roundId === 'r16' && (lang === 'en' ? 'R16' : '1/8')}
+          {round.roundId === 'qf' && (lang === 'en' ? 'Quarters' : (lang === 'es' ? 'Cuartos' : 'Quarts'))}
+          {round.roundId === 'sf' && (lang === 'en' ? 'Semis' : (lang === 'es' ? 'Semis' : 'Demis'))}
+          {round.roundId === 'final' && (lang === 'en' ? 'Finals' : (lang === 'es' ? 'Finales' : 'Finales'))}
+        </button>
+      ))}
+    </div>
+  </div>
+
+  <!-- Bracket Canvas -->
+  <div class="bracket-canvas">
+    {knockouts.map((round, roundIndex) => (
+      <div 
+        class={`bracket-column ${roundIndex === 0 ? 'active' : ''}`} 
+        data-round-col={round.roundId}
+      >
+        <div class="column-header font-display">
+          <h3>{t(`round.${round.roundId}` as any)}</h3>
+          <span class="matches-count">{round.matches.length} Match{round.matches.length > 1 ? 's' : ''}</span>
+        </div>
+
+        <div class="column-matches">
+          {round.matches.map((match) => (
+            <div class="match-slot-wrapper">
+              <MatchCard
+                id={match.id}
+                home=""
+                away=""
+                homePlaceholder={translatePlaceholderServer(match.homePlaceholder)}
+                awayPlaceholder={translatePlaceholderServer(match.awayPlaceholder)}
+                date={match.date}
+                venue={match.venue}
+                isKnockout={true}
+                isThirdPlace={match.isThirdPlace}
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+    ))}
+  </div>
+</div>
+
+<style>
+  .bracket-view {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    padding-top: 12px;
+  }
+
+  /* Round Navigation for mobile */
+  .bracket-round-nav {
+    position: sticky;
+    top: 76px;
+    z-index: 90;
+    padding: 6px;
+    background: rgba(10, 12, 22, 0.9);
+    border-radius: 12px;
+    display: none;
+  }
+
+  .round-nav-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 4px;
+  }
+
+  .round-nav-btn {
+    flex: 1;
+    text-align: center;
+    padding: 8px 4px;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    border-radius: 8px;
+    transition: all 0.2s ease;
+  }
+
+  .round-nav-btn.active {
+    color: var(--text-primary);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: inset 0 1px 1px rgba(255,255,255,0.1);
+  }
+
+  /* Canvas styling */
+  .bracket-canvas {
+    display: flex;
+    gap: 32px;
+    width: 100%;
+    overflow-x: auto;
+    padding: 10px 4px 30px;
+    scroll-behavior: smooth;
+    scrollbar-width: thin;
+  }
+
+  .bracket-column {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    min-width: 280px;
+    flex: 1;
+  }
+
+  .column-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    margin-bottom: 12px;
+  }
+
+  .column-header h3 {
+    font-size: 1.1rem;
+    color: #fff;
+  }
+
+  .matches-count {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    font-weight: 600;
+  }
+
+  .column-matches {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 100%;
+    gap: 16px;
+  }
+
+  .match-slot-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+  }
+
+  /* Aligning brackets visually on Desktop using flex layouts */
+  @media (min-width: 1025px) {
+    .bracket-canvas {
+      height: 1100px;
+      overflow-y: hidden;
+    }
+
+    .bracket-column[data-round-col="r32"] .column-matches {
+      gap: 12px;
+    }
+    
+    .bracket-column[data-round-col="r16"] .column-matches {
+      justify-content: space-around;
+    }
+    
+    .bracket-column[data-round-col="qf"] .column-matches {
+      justify-content: space-around;
+    }
+
+    .bracket-column[data-round-col="sf"] .column-matches {
+      justify-content: space-around;
+    }
+
+    .bracket-column[data-round-col="final"] .column-matches {
+      justify-content: center;
+      gap: 60px;
+    }
+  }
+
+  /* Mobile Responsive styling */
+  @media (max-width: 1024px) {
+    .bracket-round-nav {
+      display: block;
+      top: 136px; /* below language picker and floating header */
+    }
+
+    .bracket-canvas {
+      overflow-x: hidden;
+      padding-top: 12px;
+    }
+
+    .bracket-column {
+      display: none;
+      width: 100%;
+      min-width: 100%;
+    }
+
+    .bracket-column.active {
+      display: flex;
+    }
+    
+    .column-header {
+      display: none;
+    }
+
+    .column-matches {
+      gap: 12px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .bracket-round-nav {
+      top: 178px;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .bracket-round-nav {
+      top: 166px;
+    }
+  }
+</style>

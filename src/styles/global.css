@@ -1,0 +1,177 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+
+:root {
+  /* Color Palette */
+  --bg-color: #07080e;
+  --bg-grid: #0d0f1a;
+  --text-primary: #ffffff;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+  
+  /* Pieds (Feet) Theme - Electric Cyan */
+  --color-pieds: #00f2fe;
+  --color-pieds-dark: #00b8e6;
+  --color-pieds-glow: rgba(0, 242, 254, 0.25);
+  --color-pieds-glow-strong: rgba(0, 242, 254, 0.6);
+  
+  /* Têtes (Heads) Theme - Neon Pink */
+  --color-tetes: #ff007f;
+  --color-tetes-dark: #cc0066;
+  --color-tetes-glow: rgba(255, 0, 127, 0.25);
+  --color-tetes-glow-strong: rgba(255, 0, 127, 0.6);
+
+  /* Card Backgrounds */
+  --card-bg: rgba(16, 20, 38, 0.6);
+  --card-border: rgba(255, 255, 255, 0.08);
+  --card-hover-border: rgba(255, 255, 255, 0.16);
+
+  /* Typography */
+  --font-display: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* Base resets & scrollbar styling */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  background-color: var(--bg-color);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.5;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+/* Animated Stadium Grid Background */
+body {
+  background-image: 
+    radial-gradient(circle at 50% 0%, rgba(31, 38, 77, 0.4) 0%, transparent 50%),
+    linear-gradient(rgba(13, 15, 26, 0.4) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(13, 15, 26, 0.4) 1px, transparent 1px);
+  background-size: 100% 100%, 40px 40px, 40px 40px;
+  background-attachment: fixed;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-family: inherit;
+}
+
+/* Scrollbar customization */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-color);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* Glassmorphism Styles */
+.glass-panel {
+  background: var(--card-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.glass-panel:hover {
+  border-color: var(--card-hover-border);
+}
+
+/* Neon utilities */
+.glow-pieds {
+  box-shadow: 0 0 15px var(--color-pieds-glow), inset 0 0 15px var(--color-pieds-glow);
+  border-color: rgba(0, 242, 254, 0.4);
+}
+
+.glow-tetes {
+  box-shadow: 0 0 15px var(--color-tetes-glow), inset 0 0 15px var(--color-tetes-glow);
+  border-color: rgba(255, 0, 127, 0.4);
+}
+
+/* Pulsing text animations for winners */
+@keyframes pulse-cyan {
+  0%, 100% { text-shadow: 0 0 4px var(--color-pieds-glow-strong); }
+  50% { text-shadow: 0 0 12px var(--color-pieds-glow-strong), 0 0 20px var(--color-pieds); }
+}
+
+@keyframes pulse-pink {
+  0%, 100% { text-shadow: 0 0 4px var(--color-tetes-glow-strong); }
+  50% { text-shadow: 0 0 12px var(--color-tetes-glow-strong), 0 0 20px var(--color-tetes); }
+}
+
+.pulse-pieds-text {
+  animation: pulse-cyan 2s infinite;
+  color: var(--color-pieds) !important;
+}
+
+.pulse-tetes-text {
+  animation: pulse-pink 2s infinite;
+  color: var(--color-tetes) !important;
+}
+
+/* Custom Utilities */
+.text-gradient-pieds {
+  background: linear-gradient(135deg, #ffffff 0%, var(--color-pieds) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-tetes {
+  background: linear-gradient(135deg, #ffffff 0%, var(--color-tetes) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.glow-text-pieds {
+  text-shadow: 0 0 8px var(--color-pieds-glow-strong);
+}
+
+.glow-text-tetes {
+  text-shadow: 0 0 8px var(--color-tetes-glow-strong);
+}
+
+/* Container limits */
+.container {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+@media (max-width: 640px) {
+  .container {
+    padding: 0 16px;
+  }
+}

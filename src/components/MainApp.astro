@@ -1,0 +1,733 @@
+---
+import '../styles/global.css';
+import Header from './Header.astro';
+import GroupStage from './GroupStage.astro';
+import KnockoutBracket from './KnockoutBracket.astro';
+import wcData from '../data/wc2026.json';
+import { useTranslations } from '../i18n/ui';
+
+interface Props {
+  lang: 'en' | 'es' | 'fr';
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const { groups, knockouts } = wcData;
+---
+
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+    
+    <!-- SEO Tags -->
+    <title>{t('title')} - {t('subtitle')}</title>
+    <meta name="description" content={t('seo.description')} />
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content={`${t('title')} - ${t('subtitle')}`} />
+    <meta property="og:description" content={t('seo.description')} />
+    <meta property="og:type" content="website" />
+  </head>
+  <body data-lang={lang}>
+    <!-- Brand Header -->
+    <Header lang={lang} />
+
+    <!-- Main View Canvas -->
+    <main class="main-content container">
+      <!-- Section 1: Group Stage (Active by default) -->
+      <section id="view-groups" class="tab-view active">
+        <GroupStage groups={groups} lang={lang} />
+      </section>
+
+      <!-- Section 2: Knockout Bracket -->
+      <section id="view-bracket" class="tab-view">
+        <KnockoutBracket knockouts={knockouts} lang={lang} />
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="app-footer">
+      <div class="container footer-content">
+        <p>{t('footer.copyright')}</p>
+        <p class="footer-note">{t('footer.disclaimer')}</p>
+      </div>
+    </footer>
+
+    <!-- Client Prediction Logic -->
+    <script>
+      // Wait for DOM to load
+      document.addEventListener('DOMContentLoaded', () => {
+        // --- State Management ---
+        const predictions = {}; // matchId -> 'home' | 'away'
+        const activeLang = document.body.getAttribute('data-lang') || 'en';
+
+        // Load initial predictions from localStorage
+        for (let i = 1; i <= 104; i++) {
+          const pred = localStorage.getItem(`tetes-pieds-match-${i}`);
+          if (pred) {
+            predictions[i] = pred;
+          }
+        }
+
+        // List of groups
+        const groupIds = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L'];
+        // Define team lists for each group
+        const groupTeams = {};
+        groupIds.forEach(id => {
+          groupTeams[id] = [`${id}1`, `${id}2`, `${id}3`, `${id}4`];
+        });
+
+        // Group Stage Matches mapping (which match belongs to which group, home, away)
+        const groupMatches = {};
+        groupIds.forEach(gId => {
+          groupMatches[gId] = [];
+        });
+
+        // Query all match cards in DOM to build lookup map
+        const matchCards = document.querySelectorAll('.match-card');
+        matchCards.forEach(card => {
+          const matchId = parseInt(card.getAttribute('data-match-id'));
+          const isKnockout = card.getAttribute('data-is-knockout') === 'true';
+          
+          if (!isKnockout) {
+            const home = card.getAttribute('data-home');
+            const away = card.getAttribute('data-away');
+            const group = home.charAt(0); // A1 -> A
+            groupMatches[group].push({ id: matchId, home, away });
+          }
+        });
+
+        // --- Core Functions ---
+
+        // Helper to check team type: odd number = pieds, even number = tetes
+        function getTeamType(teamName) {
+          if (!teamName || teamName.includes('Vainqueur') || teamName.includes('Groupe') || teamName.includes('Perdant') ||
+              teamName.includes('Winner') || teamName.includes('Group') || teamName.includes('Loser') ||
+              teamName.includes('Ganador') || teamName.includes('Grupo') || teamName.includes('Perdedor') ||
+              teamName.includes('3e') || teamName.includes('3rd') || teamName.includes('3º')) {
+            return 'unknown';
+          }
+          const numPart = teamName.replace(/[^0-9]/g, '');
+          if (!numPart) return 'unknown';
+          const num = parseInt(numPart);
+          return num % 2 !== 0 ? 'pieds' : 'tetes';
+        }
+
+        // Translation for dynamic bracket placeholders in UI
+        function translatePlaceholder(text, lang) {
+          if (!text) return '';
+          if (text.startsWith('1er Groupe ')) {
+            const group = text.replace('1er Groupe ', '');
+            if (lang === 'en') return `1st Group ${group}`;
+            if (lang === 'es') return `1º Grupo ${group}`;
+            return `1er Groupe ${group}`;
+          }
+          if (text.startsWith('2e Groupe ')) {
+            const group = text.replace('2e Groupe ', '');
+            if (lang === 'en') return `2nd Group ${group}`;
+            if (lang === 'es') return `2º Grupo ${group}`;
+            return `2e Groupe ${group}`;
+          }
+          if (text.startsWith('3e ')) {
+            const group = text.replace('3e ', '');
+            if (lang === 'en') return `3rd ${group}`;
+            if (lang === 'es') return `3º ${group}`;
+            return `3e ${group}`;
+          }
+          if (text.startsWith('Vainqueur ')) {
+            const matchNum = text.replace('Vainqueur ', '');
+            if (lang === 'en') return `Winner ${matchNum}`;
+            if (lang === 'es') return `Ganador ${matchNum}`;
+            return `Vainqueur ${matchNum}`;
+          }
+          if (text.startsWith('Perdant ')) {
+            const matchNum = text.replace('Perdant ', '');
+            if (lang === 'en') return `Loser ${matchNum}`;
+            if (lang === 'es') return `Perdedor ${matchNum}`;
+            return `Perdant ${matchNum}`;
+          }
+          return text;
+        }
+
+        // Apply prediction styles to MatchCard elements
+        function styleCard(card, winner) {
+          card.setAttribute('data-winner', winner || '');
+          card.classList.remove('glow-pieds', 'glow-tetes');
+          
+          if (winner) {
+            const teamName = winner === 'home' ? card.getAttribute('data-home') : card.getAttribute('data-away');
+            const type = getTeamType(teamName);
+            
+            if (type === 'pieds') {
+              card.classList.add('glow-pieds');
+              card.style.setProperty('--color-winner', 'var(--color-pieds)');
+              card.style.setProperty('--bg-winner-active', 'rgba(0, 242, 254, 0.12)');
+              card.style.setProperty('--border-winner-active', 'rgba(0, 242, 254, 0.4)');
+              card.style.setProperty('--glow-winner-active', 'var(--color-pieds-glow)');
+            } else if (type === 'tetes') {
+              card.classList.add('glow-tetes');
+              card.style.setProperty('--color-winner', 'var(--color-tetes)');
+              card.style.setProperty('--bg-winner-active', 'rgba(255, 0, 127, 0.12)');
+              card.style.setProperty('--border-winner-active', 'rgba(255, 0, 127, 0.4)');
+              card.style.setProperty('--glow-winner-active', 'var(--color-tetes-glow)');
+            } else {
+              // fallback
+              card.style.setProperty('--color-winner', 'var(--text-secondary)');
+              card.style.setProperty('--bg-winner-active', 'rgba(255, 255, 255, 0.08)');
+              card.style.setProperty('--border-winner-active', 'rgba(255, 255, 255, 0.15)');
+            }
+          }
+        }
+
+        // Update Standings for all Groups
+        function updateAllStandings() {
+          const groupStandings = {}; // gId -> array of { team, pts, win, draw, loss, played }
+
+          groupIds.forEach(gId => {
+            const teams = groupTeams[gId];
+            const standings = teams.map(t => ({
+              team: t,
+              pts: 0,
+              win: 0,
+              draw: 0,
+              loss: 0,
+              played: 0
+            }));
+
+            // Calculate stats from matches
+            groupMatches[gId].forEach(m => {
+              const pred = predictions[m.id];
+              if (pred) {
+                const homeRow = standings.find(s => s.team === m.home);
+                const awayRow = standings.find(s => s.team === m.away);
+
+                if (homeRow && awayRow) {
+                  homeRow.played++;
+                  awayRow.played++;
+                  
+                  if (pred === 'home') {
+                    homeRow.win++;
+                    homeRow.pts += 3;
+                    awayRow.loss++;
+                  } else if (pred === 'away') {
+                    awayRow.win++;
+                    awayRow.pts += 3;
+                    homeRow.loss++;
+                  }
+                }
+              }
+            });
+
+            // Sort standings: Pts desc, Win desc, team string alphabetical asc
+            standings.sort((a, b) => {
+              if (b.pts !== a.pts) return b.pts - a.pts;
+              if (b.win !== a.win) return b.win - a.win;
+              return a.team.localeCompare(b.team);
+            });
+
+            groupStandings[gId] = standings;
+
+            // Update DOM table
+            const tbody = document.querySelector(`[data-group-tbody="${gId}"]`);
+            if (tbody) {
+              const rows = Array.from(tbody.querySelectorAll('tr'));
+              
+              // Re-order rows in DOM according to sorted standings
+              standings.forEach((standing, index) => {
+                const row = rows.find(r => r.getAttribute('data-team-row') === standing.team);
+                if (row) {
+                  // Update cells
+                  row.querySelector('[data-played-val]').textContent = standing.played;
+                  row.querySelector('[data-win-val]').textContent = standing.win;
+                  row.querySelector('[data-loss-val]').textContent = standing.loss;
+                  row.querySelector('[data-pts-val]').textContent = standing.pts;
+                  
+                  // Update position cell
+                  row.querySelector('.pos-cell').textContent = index + 1;
+                  
+                  // Append to reorder
+                  tbody.appendChild(row);
+                }
+              });
+            }
+          });
+
+          return groupStandings;
+        }
+
+        // Propagate Winners to Knockouts
+        function propagateBracket(groupStandings) {
+          // 1. Resolve qualifiers from group stages
+          const groupWinners = {}; // gId -> teamName
+          const groupRunnersUp = {}; // gId -> teamName
+          const groupThirds = []; // Array of { team, pts, win, group }
+
+          groupIds.forEach(gId => {
+            const standings = groupStandings[gId];
+            groupWinners[gId] = standings[0].team;
+            groupRunnersUp[gId] = standings[1].team;
+            groupThirds.push({
+              team: standings[2].team,
+              pts: standings[2].pts,
+              win: standings[2].win,
+              group: gId
+            });
+          });
+
+          // Sort 3rd place teams to find top 8
+          groupThirds.sort((a, b) => {
+            if (b.pts !== a.pts) return b.pts - a.pts;
+            if (b.win !== a.win) return b.win - a.win;
+            return a.group.localeCompare(b.group);
+          });
+
+          const top8Thirds = groupThirds.slice(0, 8);
+
+          // Helper to map R32 placeholders to actual team IDs
+          function resolveR32Team(placeholder) {
+            // E.g., "1er Groupe A"
+            if (placeholder.startsWith('1er Groupe ')) {
+              const gId = placeholder.replace('1er Groupe ', '');
+              return groupWinners[gId];
+            }
+            if (placeholder.startsWith('2e Groupe ')) {
+              const gId = placeholder.replace('2e Groupe ', '');
+              return groupRunnersUp[gId];
+            }
+            if (placeholder.startsWith('3e ')) {
+              // 3e C/D/I or 3e E/F/G, etc. We map to available third place qualifiers in top8Thirds
+              // For simplicity in client mock-up, we map them in index order of available top 8 thirds
+              const indexMap = {
+                '3e C/D/I': 0,
+                '3e E/F/G': 1,
+                '3e A/B/F': 2,
+                '3e B/C/F': 3,
+                '3e A/C/D': 4,
+                '3e G/H/I': 5,
+                '3e A/E/H': 6,
+                '3e J/K/L': 7,
+                '3e I/J/L': 7 // fallback or overlap
+              };
+              const index = indexMap[placeholder] ?? 0;
+              const thirdQual = top8Thirds[index];
+              return thirdQual ? thirdQual.team : placeholder;
+            }
+            return placeholder;
+          }
+
+          // Keep track of resolved teams for all matches (73 to 104)
+          const resolvedTeams = {};
+
+          // Initialize group stage matches in resolvedTeams
+          for (let i = 1; i <= 72; i++) {
+            const card = document.querySelector(`.match-card[data-match-id="${i}"]`);
+            if (card) {
+              const winner = predictions[i];
+              if (winner === 'home') resolvedTeams[i] = card.getAttribute('data-home');
+              else if (winner === 'away') resolvedTeams[i] = card.getAttribute('data-away');
+            }
+          }
+
+          // Handle R32 matches (73 to 88)
+          const r32Matches = [73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88];
+          r32Matches.forEach(mId => {
+            const card = document.querySelector(`.match-card[data-match-id="${mId}"]`);
+            if (card) {
+              const homePl = card.getAttribute('data-home-placeholder');
+              const awayPl = card.getAttribute('data-away-placeholder');
+              
+              const homeReal = resolveR32Team(homePl);
+              const awayReal = resolveR32Team(awayPl);
+
+              // Set attributes
+              const oldHome = card.getAttribute('data-home');
+              const oldAway = card.getAttribute('data-away');
+              
+              card.setAttribute('data-home', homeReal);
+              card.setAttribute('data-away', awayReal);
+
+              // If match teams changed, invalidate previous prediction!
+              if (oldHome !== homeReal || oldAway !== awayReal) {
+                delete predictions[mId];
+                localStorage.removeItem(`tetes-pieds-match-${mId}`);
+                styleCard(card, null);
+              }
+
+              // Update text display in card
+              updateCardText(card, homeReal, awayReal);
+
+              // Register winner if any
+              const winner = predictions[mId];
+              if (winner === 'home') resolvedTeams[mId] = homeReal;
+              else if (winner === 'away') resolvedTeams[mId] = awayReal;
+
+              styleCard(card, winner);
+            }
+          });
+
+          // Helper to get winner of match
+          function getMatchWinner(matchId) {
+            return resolvedTeams[matchId];
+          }
+
+          // Handle R16 matches (89 to 96)
+          const r16Matches = [
+            { id: 89, homeM: 73, awayM: 74 },
+            { id: 90, homeM: 75, awayM: 76 },
+            { id: 91, homeM: 77, awayM: 78 },
+            { id: 92, homeM: 79, awayM: 80 },
+            { id: 93, homeM: 81, awayM: 82 },
+            { id: 94, homeM: 83, awayM: 84 },
+            { id: 95, homeM: 85, awayM: 86 },
+            { id: 96, homeM: 87, awayM: 88 }
+          ];
+
+          r16Matches.forEach(m => {
+            propagateMatchNode(m.id, m.homeM, m.awayM);
+          });
+
+          // Handle QF matches (97 to 100)
+          const qfMatches = [
+            { id: 97, homeM: 89, awayM: 90 },
+            { id: 98, homeM: 91, awayM: 92 },
+            { id: 99, homeM: 93, awayM: 94 },
+            { id: 100, homeM: 95, awayM: 96 }
+          ];
+
+          qfMatches.forEach(m => {
+            propagateMatchNode(m.id, m.homeM, m.awayM);
+          });
+
+          // Handle SF matches (101 & 102)
+          const sfMatches = [
+            { id: 101, homeM: 97, awayM: 98 },
+            { id: 102, homeM: 99, awayM: 100 }
+          ];
+
+          sfMatches.forEach(m => {
+            propagateMatchNode(m.id, m.homeM, m.awayM);
+          });
+
+          // Handle Finals (103: Third Place, 104: Final)
+          propagateMatchNode(104, 101, 102);
+          propagateThirdPlaceNode(103, 101, 102);
+
+          // Propagation helper for standard winner advancement
+          function propagateMatchNode(mId, homeParentId, awayParentId) {
+            const card = document.querySelector(`.match-card[data-match-id="${mId}"]`);
+            if (card) {
+              const homeWinner = getMatchWinner(homeParentId) || card.getAttribute('data-home-placeholder');
+              const awayWinner = getMatchWinner(awayParentId) || card.getAttribute('data-away-placeholder');
+
+              const oldHome = card.getAttribute('data-home');
+              const oldAway = card.getAttribute('data-away');
+
+              card.setAttribute('data-home', homeWinner);
+              card.setAttribute('data-away', awayWinner);
+
+              // Invalidate prediction if competitors changed
+              if (oldHome !== homeWinner || oldAway !== awayWinner) {
+                delete predictions[mId];
+                localStorage.removeItem(`tetes-pieds-match-${mId}`);
+                styleCard(card, null);
+              }
+
+              updateCardText(card, homeWinner, awayWinner);
+
+              const winner = predictions[mId];
+              if (winner === 'home' && getMatchWinner(homeParentId)) resolvedTeams[mId] = homeWinner;
+              else if (winner === 'away' && getMatchWinner(awayParentId)) resolvedTeams[mId] = awayWinner;
+
+              styleCard(card, winner);
+            }
+          }
+
+          // Special propagation helper for Losers (Third Place Play-off)
+          function propagateThirdPlaceNode(mId, parent1Id, parent2Id) {
+            const card = document.querySelector(`.match-card[data-match-id="${mId}"]`);
+            if (card) {
+              let homeLoser = card.getAttribute('data-home-placeholder');
+              const parent1Winner = getMatchWinner(parent1Id);
+              if (parent1Winner) {
+                const parent1Card = document.querySelector(`.match-card[data-match-id="${parent1Id}"]`);
+                const parent1Home = parent1Card.getAttribute('data-home');
+                const parent1Away = parent1Card.getAttribute('data-away');
+                homeLoser = parent1Winner === parent1Home ? parent1Away : parent1Home;
+              }
+
+              let awayLoser = card.getAttribute('data-away-placeholder');
+              const parent2Winner = getMatchWinner(parent2Id);
+              if (parent2Winner) {
+                const parent2Card = document.querySelector(`.match-card[data-match-id="${parent2Id}"]`);
+                const parent2Home = parent2Card.getAttribute('data-home');
+                const parent2Away = parent2Card.getAttribute('data-away');
+                awayLoser = parent2Winner === parent2Home ? parent2Away : parent2Home;
+              }
+
+              const oldHome = card.getAttribute('data-home');
+              const oldAway = card.getAttribute('data-away');
+
+              card.setAttribute('data-home', homeLoser);
+              card.setAttribute('data-away', awayLoser);
+
+              if (oldHome !== homeLoser || oldAway !== awayLoser) {
+                delete predictions[mId];
+                localStorage.removeItem(`tetes-pieds-match-${mId}`);
+                styleCard(card, null);
+              }
+
+              updateCardText(card, homeLoser, awayLoser);
+
+              const winner = predictions[mId];
+              if (winner === 'home' && parent1Winner) resolvedTeams[mId] = homeLoser;
+              else if (winner === 'away' && parent2Winner) resolvedTeams[mId] = awayLoser;
+
+              styleCard(card, winner);
+            }
+          }
+
+          // Update card labels and badges dynamically in DOM
+          function updateCardText(card, homeText, awayText) {
+            const homeSpan = card.querySelector('[data-team-text="home"]');
+            const awaySpan = card.querySelector('[data-team-text="away"]');
+            
+            homeSpan.textContent = translatePlaceholder(homeText, activeLang);
+            awaySpan.textContent = translatePlaceholder(awayText, activeLang);
+
+            // Badges
+            const homeBadgeCont = card.querySelector('[data-team-badge="home"]');
+            const awayBadgeCont = card.querySelector('[data-team-badge="away"]');
+
+            updateBadge(homeBadgeCont, homeText);
+            updateBadge(awayBadgeCont, awayText);
+          }
+
+          function updateBadge(container, teamName) {
+            container.innerHTML = ''; // clear
+            const type = getTeamType(teamName);
+            
+            const badgeLabelPieds = activeLang === 'es' ? 'Pies' : (activeLang === 'fr' ? 'Pieds' : 'Feet');
+            const badgeLabelTetes = activeLang === 'es' ? 'Cabezas' : (activeLang === 'fr' ? 'Têtes' : 'Heads');
+
+            if (type === 'pieds') {
+              container.innerHTML = `<span class="type-badge pieds"><span class="badge-icon">🦶</span> ${badgeLabelPieds}</span>`;
+            } else if (type === 'tetes') {
+              container.innerHTML = `<span class="type-badge tetes"><span class="badge-icon">👤</span> ${badgeLabelTetes}</span>`;
+            }
+          }
+        }
+
+        // Update Scoreboards & Progress Bars
+        function updateScoreboard() {
+          let countPieds = 0;
+          let countTetes = 0;
+          let predictedCount = 0;
+
+          for (let i = 1; i <= 72; i++) {
+            if (predictions[i]) predictedCount++;
+          }
+
+          for (let i = 1; i <= 104; i++) {
+            const winner = predictions[i];
+            if (winner) {
+              const card = document.querySelector(`.match-card[data-match-id="${i}"]`);
+              if (card) {
+                const winningTeam = winner === 'home' ? card.getAttribute('data-home') : card.getAttribute('data-away');
+                const type = getTeamType(winningTeam);
+                
+                if (type === 'pieds') countPieds++;
+                else if (type === 'tetes') countTetes++;
+              }
+            }
+          }
+
+          // Update Scoreboard DOM elements
+          document.getElementById('global-count-pieds').textContent = countPieds;
+          document.getElementById('global-count-tetes').textContent = countTetes;
+          document.getElementById('predicted-matches-count').textContent = predictedCount;
+
+          const totalScore = countPieds + countTetes;
+          const ratioSpan = document.getElementById('global-ratio');
+          const fillBar = document.getElementById('global-fill');
+
+          if (totalScore > 0) {
+            const pctPieds = Math.round((countPieds / totalScore) * 100);
+            const pctTetes = 100 - pctPieds;
+            ratioSpan.textContent = `${pctPieds}% / ${pctTetes}%`;
+            fillBar.style.width = `${pctPieds}%`;
+          } else {
+            ratioSpan.textContent = '50% / 50%';
+            fillBar.style.width = '50%';
+          }
+        }
+
+        function runRecalculationPipeline() {
+          const groupStandings = updateAllStandings();
+          propagateBracket(groupStandings);
+          updateScoreboard();
+        }
+
+        // --- Event Listeners ---
+
+        // Match Card Winner toggles (Delegated click listener)
+        document.body.addEventListener('click', (e) => {
+          const teamRow = e.target.closest('.team-row');
+          if (!teamRow) return;
+
+          const card = teamRow.closest('.match-card');
+          if (!card) return;
+
+          const matchId = parseInt(card.getAttribute('data-match-id'));
+          const selectedTeam = teamRow.getAttribute('data-team');
+          
+          const teamText = teamRow.querySelector('.team-name').textContent;
+          if (teamText.includes('Vainqueur') || teamText.includes('Groupe') || teamText.includes('Perdant') || teamText.includes('3e') ||
+              teamText.includes('Winner') || teamText.includes('Group') || teamText.includes('Loser') || teamText.includes('3rd') ||
+              teamText.includes('Ganador') || teamText.includes('Grupo') || teamText.includes('Perdedor') || teamText.includes('3º')) {
+            return; // Can't click placeholders
+          }
+
+          const currentWinner = predictions[matchId];
+          
+          if (currentWinner === selectedTeam) {
+            delete predictions[matchId];
+            localStorage.removeItem(`tetes-pieds-match-${matchId}`);
+          } else {
+            predictions[matchId] = selectedTeam;
+            localStorage.setItem(`tetes-pieds-match-${matchId}`, selectedTeam);
+          }
+
+          runRecalculationPipeline();
+        });
+
+        // Tab View Switching
+        const tabGroups = document.getElementById('tab-groups');
+        const tabBracket = document.getElementById('tab-bracket');
+        const viewGroups = document.getElementById('view-groups');
+        const viewBracket = document.getElementById('view-bracket');
+
+        function switchTab(targetTab) {
+          if (targetTab === 'groups') {
+            tabGroups.classList.add('active');
+            tabBracket.classList.remove('active');
+            viewGroups.classList.add('active');
+            viewBracket.classList.remove('active');
+          } else {
+            tabGroups.classList.remove('active');
+            tabBracket.classList.add('active');
+            viewGroups.classList.remove('active');
+            viewBracket.classList.add('active');
+          }
+        }
+
+        tabGroups.addEventListener('click', () => switchTab('groups'));
+        tabBracket.addEventListener('click', () => switchTab('bracket'));
+
+        // Mobile Round Tabs switcher
+        const roundButtons = document.querySelectorAll('.round-nav-btn');
+        roundButtons.forEach(btn => {
+          btn.addEventListener('click', () => {
+            const roundId = btn.getAttribute('data-round-tab');
+            
+            roundButtons.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            const columns = document.querySelectorAll('.bracket-column');
+            columns.forEach(col => {
+              if (col.getAttribute('data-round-col') === roundId) {
+                col.classList.add('active');
+              } else {
+                col.classList.remove('active');
+              }
+            });
+          });
+        });
+
+        // Smooth Scroll Offset for Group Anchors
+        const anchorLinks = document.querySelectorAll('.quick-nav-link');
+        anchorLinks.forEach(link => {
+          link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const targetId = link.getAttribute('href');
+            const targetEl = document.querySelector(targetId);
+            if (targetEl) {
+              const offset = 140;
+              const bodyRect = document.body.getBoundingClientRect().top;
+              const elementRect = targetEl.getBoundingClientRect().top;
+              const elementPosition = elementRect - bodyRect;
+              const offsetPosition = elementPosition - offset;
+
+              window.scrollTo({
+                top: offsetPosition,
+                behavior: 'smooth'
+              });
+            }
+          });
+        });
+
+        // --- Startup ---
+        runRecalculationPipeline();
+      });
+    </script>
+  </body>
+</html>
+
+<style>
+  .main-content {
+    margin-top: 140px;
+    min-height: 80vh;
+    padding-bottom: 60px;
+  }
+
+  .tab-view {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+
+  .tab-view.active {
+    display: block;
+    opacity: 1;
+  }
+
+  .app-footer {
+    background: rgba(8, 10, 18, 0.95);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 30px 0;
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    text-align: center;
+    margin-top: 80px;
+  }
+
+  .footer-content {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .footer-note {
+    font-size: 0.75rem;
+    opacity: 0.6;
+  }
+
+  @media (max-width: 1024px) {
+    .main-content {
+      margin-top: 200px;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .main-content {
+      margin-top: 190px;
+    }
+    .app-footer {
+      padding: 20px 0;
+      margin-top: 40px;
+    }
+  }
+</style>

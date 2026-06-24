@@ -1,0 +1,286 @@
+---
+// MatchCard.astro
+interface Props {
+  id: number;
+  home: string;
+  away: string;
+  date: string;
+  venue: string;
+  isKnockout?: boolean;
+  homePlaceholder?: string;
+  awayPlaceholder?: string;
+}
+
+const { id, home, away, date, venue, isKnockout = false, homePlaceholder = "", awayPlaceholder = "" } = Astro.props;
+
+// Determine team type based on their name suffix
+// e.g., odd numbers (A1, A3) are Pieds, even numbers (A2, A4) are Têtes.
+// For knockouts, we'll determine it dynamically in client JS, but we can set defaults.
+const getTeamType = (teamName: string) => {
+  if (!teamName) return "unknown";
+  const numPart = teamName.replace(/[^0-9]/g, "");
+  if (!numPart) return "unknown";
+  const num = parseInt(numPart);
+  return num % 2 !== 0 ? "pieds" : "tetes";
+};
+
+const homeType = getTeamType(home);
+const awayType = getTeamType(away);
+---
+
+<div 
+  class="match-card glass-panel" 
+  data-match-id={id}
+  data-home={home}
+  data-away={away}
+  data-home-placeholder={homePlaceholder}
+  data-away-placeholder={awayPlaceholder}
+  data-is-knockout={isKnockout ? "true" : "false"}
+  data-winner=""
+>
+  <!-- Card Header: Match ID, Round, Date/Venue -->
+  <div class="match-card-header">
+    <span class="match-number">N°{id}</span>
+    <span class="match-meta">{date} • {venue}</span>
+  </div>
+
+  <!-- Teams Section -->
+  <div class="match-teams">
+    <!-- Home Team -->
+    <button class="team-row" data-team="home" aria-label={`Prédire victoire pour ${home || homePlaceholder}`}>
+      <div class="team-badge-wrapper">
+        <div class="team-indicator-dot"></div>
+        <span class="team-name" data-team-text="home">{home || homePlaceholder}</span>
+      </div>
+      <div class="team-type-badge-container" data-team-badge="home">
+        {home && (
+          homeType === "pieds" ? (
+            <span class="type-badge pieds">
+              <span class="badge-icon">🦶</span> Pieds
+            </span>
+          ) : (
+            <span class="type-badge tetes">
+              <span class="badge-icon">👤</span> Têtes
+            </span>
+          )
+        )}
+      </div>
+    </button>
+
+    <!-- VS Divider -->
+    <div class="match-vs-divider">
+      <span class="vs-line"></span>
+      <span class="vs-text">VS</span>
+      <span class="vs-line"></span>
+    </div>
+
+    <!-- Away Team -->
+    <button class="team-row" data-team="away" aria-label={`Prédire victoire pour ${away || awayPlaceholder}`}>
+      <div class="team-badge-wrapper">
+        <div class="team-indicator-dot"></div>
+        <span class="team-name" data-team-text="away">{away || awayPlaceholder}</span>
+      </div>
+      <div class="team-type-badge-container" data-team-badge="away">
+        {away && (
+          awayType === "pieds" ? (
+            <span class="type-badge pieds">
+              <span class="badge-icon">🦶</span> Pieds
+            </span>
+          ) : (
+            <span class="type-badge tetes">
+              <span class="badge-icon">👤</span> Têtes
+            </span>
+          )
+        )}
+      </div>
+    </button>
+  </div>
+</div>
+
+<style>
+  .match-card {
+    padding: 14px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    position: relative;
+    overflow: hidden;
+    background: rgba(18, 22, 43, 0.4);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .match-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: transparent;
+    transition: background-color 0.3s ease;
+  }
+
+  /* Card Header styling */
+  .match-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    padding-bottom: 6px;
+  }
+
+  .match-number {
+    font-family: var(--font-display);
+    color: var(--text-secondary);
+    background: rgba(255, 255, 255, 0.05);
+    padding: 1px 6px;
+    border-radius: 4px;
+    font-size: 0.7rem;
+  }
+
+  .match-meta {
+    text-align: right;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 170px;
+  }
+
+  /* Teams list */
+  .match-teams {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .team-row {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 10px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    text-align: left;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .team-row:hover {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(255, 255, 255, 0.08);
+  }
+
+  .team-badge-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .team-indicator-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+  }
+
+  .team-name {
+    font-family: var(--font-display);
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--text-primary);
+  }
+
+  .type-badge {
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 12px;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+  }
+
+  .type-badge.pieds {
+    background: rgba(0, 242, 254, 0.1);
+    color: var(--color-pieds);
+    border: 1px solid rgba(0, 242, 254, 0.2);
+  }
+
+  .type-badge.tetes {
+    background: rgba(255, 0, 127, 0.1);
+    color: var(--color-tetes);
+    border: 1px solid rgba(255, 0, 127, 0.2);
+  }
+
+  /* VS separator style */
+  .match-vs-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    height: 14px;
+  }
+
+  .vs-line {
+    flex: 1;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.05);
+  }
+
+  .vs-text {
+    font-family: var(--font-display);
+    font-size: 0.65rem;
+    font-weight: 800;
+    color: var(--text-muted);
+    letter-spacing: 0.1em;
+  }
+
+  /* Winner Selection styling applied dynamically */
+  
+  /* Home winner active styling */
+  .match-card[data-winner="home"] {
+    border-color: rgba(255, 255, 255, 0.15);
+  }
+  .match-card[data-winner="home"]::before {
+    background: var(--color-winner, var(--color-pieds));
+  }
+  .match-card[data-winner="home"] .team-row[data-team="home"] {
+    background: var(--bg-winner-active, rgba(0, 242, 254, 0.1));
+    border-color: var(--border-winner-active, rgba(0, 242, 254, 0.3));
+    box-shadow: 0 0 10px var(--glow-winner-active, var(--color-pieds-glow));
+  }
+  .match-card[data-winner="home"] .team-row[data-team="home"] .team-indicator-dot {
+    background: var(--color-winner, var(--color-pieds));
+    box-shadow: 0 0 8px var(--color-winner, var(--color-pieds));
+  }
+  .match-card[data-winner="home"] .team-row[data-team="away"] {
+    opacity: 0.45;
+  }
+
+  /* Away winner active styling */
+  .match-card[data-winner="away"] {
+    border-color: rgba(255, 255, 255, 0.15);
+  }
+  .match-card[data-winner="away"]::before {
+    background: var(--color-winner, var(--color-tetes));
+  }
+  .match-card[data-winner="away"] .team-row[data-team="away"] {
+    background: var(--bg-winner-active, rgba(255, 0, 127, 0.1));
+    border-color: var(--border-winner-active, rgba(255, 0, 127, 0.3));
+    box-shadow: 0 0 10px var(--glow-winner-active, var(--color-tetes-glow));
+  }
+  .match-card[data-winner="away"] .team-row[data-team="away"] .team-indicator-dot {
+    background: var(--color-winner, var(--color-tetes));
+    box-shadow: 0 0 8px var(--color-winner, var(--color-tetes));
+  }
+  .match-card[data-winner="away"] .team-row[data-team="home"] {
+    opacity: 0.45;
+  }
+</style>

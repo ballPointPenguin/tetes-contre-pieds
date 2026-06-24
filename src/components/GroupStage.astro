@@ -1,0 +1,436 @@
+---
+// GroupStage.astro
+import MatchCard from './MatchCard.astro';
+import { useTranslations } from '../i18n/ui';
+
+interface Match {
+  id: number;
+  home: string;
+  away: string;
+  date: string;
+  venue: string;
+}
+
+interface Group {
+  id: string;
+  name: string;
+  teams: string[];
+  matches: Match[];
+}
+
+interface Props {
+  groups: Group[];
+  lang: 'en' | 'es' | 'fr';
+}
+
+const { groups, lang } = Astro.props;
+const t = useTranslations(lang);
+
+// Localized Group name helper
+const getGroupName = (name: string) => {
+  if (lang === 'en') return name.replace('Groupe', 'Group');
+  if (lang === 'es') return name.replace('Groupe', 'Grupo');
+  return name;
+};
+
+// Helper to determine team type badge
+const getTeamTypeBadge = (teamName: string) => {
+  const numPart = teamName.replace(/[^0-9]/g, "");
+  const num = parseInt(numPart) || 1;
+  return num % 2 !== 0 ? `🦶 ${t('badge.pieds')}` : `👤 ${t('badge.tetes')}`;
+};
+
+const getTeamTypeClass = (teamName: string) => {
+  const numPart = teamName.replace(/[^0-9]/g, "");
+  const num = parseInt(numPart) || 1;
+  return num % 2 !== 0 ? "text-pieds" : "text-tetes";
+};
+---
+
+<div class="group-stage-view">
+  <!-- Sticky Quick Navigation for Groups -->
+  <div class="group-quick-nav glass-panel">
+    <div class="quick-nav-container">
+      <span class="quick-nav-title">{t('quicknav.goto')}</span>
+      <div class="quick-nav-links">
+        {groups.map((group) => (
+          <a href={`#group-${group.id}`} class="quick-nav-link" data-group-anchor={group.id}>
+            {group.id}
+          </a>
+        ))}
+      </div>
+    </div>
+  </div>
+
+  <!-- Groups Grid Layout -->
+  <div class="groups-grid">
+    {groups.map((group) => (
+      <section class="group-section glass-panel" id={`group-${group.id}`}>
+        <!-- Group Header -->
+        <div class="group-header">
+          <h2>{getGroupName(group.name)}</h2>
+          <div class="group-type-split">
+            <span class="split-item pieds">2 {t('badge.pieds')}</span>
+            <span class="split-vs">vs</span>
+            <span class="split-item tetes">2 {t('badge.tetes')}</span>
+          </div>
+        </div>
+
+        <!-- Live Standings Table -->
+        <div class="standings-wrapper">
+          <table class="standings-table" data-group-table={group.id}>
+            <thead>
+              <tr>
+                <th class="col-pos">{t('table.pos')}</th>
+                <th class="col-team">{t('table.team')}</th>
+                <th class="col-type">{t('table.type')}</th>
+                <th class="col-stat">{t('table.played')}</th>
+                <th class="col-stat">{t('table.win')}</th>
+                <th class="col-stat">{t('table.draw')}</th>
+                <th class="col-stat">{t('table.loss')}</th>
+                <th class="col-pts">{t('table.pts')}</th>
+              </tr>
+            </thead>
+            <tbody data-group-tbody={group.id}>
+              {group.teams.map((team, index) => (
+                <tr data-team-row={team} data-pts="0" data-win="0" data-draw="0" data-loss="0" data-played="0">
+                  <td class="col-pos pos-cell">{index + 1}</td>
+                  <td class="col-team team-cell font-display">{team}</td>
+                  <td class={`col-type type-cell ${getTeamTypeClass(team)}`}>
+                    {getTeamTypeBadge(team)}
+                  </td>
+                  <td class="col-stat stat-cell" data-played-val>0</td>
+                  <td class="col-stat stat-cell" data-win-val>0</td>
+                  <td class="col-stat stat-cell" data-draw-val>0</td>
+                  <td class="col-stat stat-cell" data-loss-val>0</td>
+                  <td class="col-pts pts-cell font-display" data-pts-val>0</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Group Matches Grid -->
+        <div class="group-matches-title font-display">{t('group.matches.title')}</div>
+        <div class="group-matches-grid">
+          {group.matches.map((match) => (
+            <MatchCard
+              id={match.id}
+              home={match.home}
+              away={match.away}
+              date={match.date}
+              venue={match.venue}
+            />
+          ))}
+        </div>
+      </section>
+    ))}
+  </div>
+</div>
+
+<style>
+  .group-stage-view {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    padding-top: 12px;
+  }
+
+  /* Sticky Quick Nav */
+  .group-quick-nav {
+    position: sticky;
+    top: 76px; /* below header */
+    z-index: 90;
+    padding: 10px 16px;
+    background: rgba(10, 12, 22, 0.9);
+    border-radius: 12px;
+  }
+
+  .quick-nav-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+
+  .quick-nav-title {
+    font-family: var(--font-display);
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+  }
+
+  .quick-nav-links {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    padding-bottom: 4px;
+    width: 100%;
+    scrollbar-width: none;
+  }
+
+  .quick-nav-links::-webkit-scrollbar {
+    display: none;
+  }
+
+  .quick-nav-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    transition: all 0.2s ease;
+  }
+
+  .quick-nav-link:hover {
+    color: var(--text-primary);
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.15);
+    transform: translateY(-2px);
+  }
+
+  /* Group Panel */
+  .groups-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .group-section {
+    padding: 24px;
+    background: rgba(13, 17, 34, 0.5);
+    scroll-margin-top: 200px; /* Offset for sticky header + picker */
+  }
+
+  .group-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    padding-bottom: 12px;
+    margin-bottom: 16px;
+  }
+
+  .group-header h2 {
+    font-size: 1.5rem;
+    color: #fff;
+    letter-spacing: -0.01em;
+  }
+
+  .group-type-split {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    background: rgba(0, 0, 0, 0.2);
+    padding: 4px 10px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.04);
+  }
+
+  .split-item.pieds {
+    color: var(--color-pieds);
+  }
+
+  .split-item.tetes {
+    color: var(--color-tetes);
+  }
+
+  .split-vs {
+    color: var(--text-muted);
+  }
+
+  /* Standings Table */
+  .standings-wrapper {
+    overflow-x: auto;
+    margin-bottom: 24px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    background: rgba(0, 0, 0, 0.15);
+  }
+
+  .standings-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.85rem;
+    text-align: left;
+  }
+
+  .standings-table th {
+    background: rgba(255, 255, 255, 0.02);
+    font-weight: 600;
+    color: var(--text-secondary);
+    padding: 10px 12px;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  }
+
+  .standings-table td {
+    padding: 10px 12px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+    vertical-align: middle;
+  }
+
+  .standings-table tbody tr {
+    transition: background-color 0.2s ease, transform 0.2s ease;
+  }
+
+  .standings-table tbody tr:hover {
+    background: rgba(255, 255, 255, 0.02);
+  }
+
+  .col-pos {
+    width: 50px;
+    text-align: center;
+  }
+
+  .pos-cell {
+    text-align: center;
+    font-weight: 700;
+    color: var(--text-muted);
+  }
+
+  .standings-table tbody tr:nth-child(1) .pos-cell,
+  .standings-table tbody tr:nth-child(2) .pos-cell {
+    color: #4ade80;
+    text-shadow: 0 0 10px rgba(74, 222, 128, 0.2);
+  }
+
+  .standings-table tbody tr:nth-child(3) .pos-cell {
+    color: #fbbf24;
+  }
+
+  .col-team {
+    font-weight: 700;
+  }
+
+  .team-cell {
+    font-size: 0.95rem;
+  }
+
+  .col-type {
+    width: 120px;
+  }
+
+  .type-cell {
+    font-size: 0.75rem;
+    font-weight: 600;
+  }
+
+  .text-pieds {
+    color: var(--color-pieds);
+  }
+
+  .text-tetes {
+    color: var(--color-tetes);
+  }
+
+  .col-stat {
+    width: 45px;
+    text-align: center;
+  }
+
+  .stat-cell {
+    color: var(--text-secondary);
+  }
+
+  .col-pts {
+    width: 60px;
+    text-align: center;
+    font-weight: 800;
+  }
+
+  .pts-cell {
+    color: #fff;
+    font-size: 0.95rem;
+  }
+
+  /* Group matches subtitle */
+  .group-matches-title {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 12px;
+    padding-left: 2px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .group-matches-title::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.05);
+  }
+
+  /* Match cards grid layout */
+  .group-matches-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+
+  /* Media Queries */
+  @media (max-width: 1200px) {
+    .group-matches-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 1024px) {
+    .group-section {
+      scroll-margin-top: 250px;
+    }
+    .group-quick-nav {
+      top: 136px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .group-section {
+      padding: 16px;
+    }
+    .group-quick-nav {
+      top: 178px;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .group-matches-grid {
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+    .group-quick-nav {
+      top: 166px;
+    }
+    .quick-nav-title {
+      display: none;
+    }
+    .standings-table {
+      font-size: 0.75rem;
+    }
+    .standings-table th, 
+    .standings-table td {
+      padding: 8px 6px;
+    }
+    .col-type {
+      width: 90px;
+    }
+  }
+</style>
