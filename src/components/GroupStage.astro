@@ -21,14 +21,7 @@ interface Group {
 
 interface StandingRow {
   team: string;
-  played: number;
-  win: number;
-  draw: number;
-  loss: number;
-  gf: number;
-  ga: number;
-  gd: number;
-  pts: number;
+  goals: number;
 }
 
 interface Props {
@@ -102,11 +95,7 @@ const getTeamTypeClass = (teamName: string) => {
                 <th class="col-pos">{t('table.pos')}</th>
                 <th class="col-team">{t('table.team')}</th>
                 <th class="col-type">{t('table.type')}</th>
-                <th class="col-stat">{t('table.played')}</th>
-                <th class="col-stat">{t('table.win')}</th>
-                <th class="col-stat">{t('table.draw')}</th>
-                <th class="col-stat">{t('table.loss')}</th>
-                <th class="col-pts">{t('table.pts')}</th>
+                <th class="col-pts">{t('table.goals')}</th>
               </tr>
             </thead>
             <tbody data-group-tbody={group.id}>
@@ -117,11 +106,7 @@ const getTeamTypeClass = (teamName: string) => {
                   <td class={`col-type type-cell ${getTeamTypeClass(row.team)}`}>
                     {getTeamTypeBadge(row.team)}
                   </td>
-                  <td class="col-stat stat-cell">{row.played}</td>
-                  <td class="col-stat stat-cell">{row.win}</td>
-                  <td class="col-stat stat-cell">{row.draw}</td>
-                  <td class="col-stat stat-cell">{row.loss}</td>
-                  <td class="col-pts pts-cell font-display">{row.pts}</td>
+                  <td class="col-pts pts-cell font-display">{row.goals}</td>
                 </tr>
               ))}
             </tbody>

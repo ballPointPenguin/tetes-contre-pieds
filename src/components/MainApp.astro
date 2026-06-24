@@ -18,14 +18,7 @@ const { groups, knockouts } = wcData;
 
 interface StandingRow {
   team: string;
-  played: number;
-  win: number;
-  draw: number;
-  loss: number;
-  gf: number;
-  ga: number;
-  gd: number;
-  pts: number;
+  goals: number;
 }
 
 const standings: Record<string, StandingRow[]> = {};
@@ -38,14 +31,7 @@ groups.forEach(group => {
   group.teams.forEach(team => {
     teamMap[team] = {
       team,
-      played: 0,
-      win: 0,
-      draw: 0,
-      loss: 0,
-      gf: 0,
-      ga: 0,
-      gd: 0,
-      pts: 0
+      goals: 0
     };
   });
 
@@ -61,43 +47,18 @@ groups.forEach(group => {
       const awayRow = teamMap[match.away];
 
       if (homeRow && awayRow) {
-        homeRow.played++;
-        awayRow.played++;
-        
-        homeRow.gf += res.homeScore;
-        homeRow.ga += res.awayScore;
-        awayRow.gf += res.awayScore;
-        awayRow.ga += res.homeScore;
-
-        if (res.homeScore > res.awayScore) {
-          homeRow.win++;
-          homeRow.pts += 3;
-          awayRow.loss++;
-        } else if (res.homeScore < res.awayScore) {
-          awayRow.win++;
-          awayRow.pts += 3;
-          homeRow.loss++;
-        } else {
-          homeRow.draw++;
-          awayRow.draw++;
-          homeRow.pts += 1;
-          awayRow.pts += 1;
-        }
+        homeRow.goals += res.homeScore;
+        awayRow.goals += res.awayScore;
       }
     }
   });
 
-  // Calculate goal differences and convert to array
-  const rows = Object.values(teamMap).map(row => {
-    row.gd = row.gf - row.ga;
-    return row;
-  });
+  // Convert to array
+  const rows = Object.values(teamMap);
 
-  // Sort standings: Pts desc, GD desc, Wins desc, Name alphabetical asc
+  // Sort standings: Goals desc, Name alphabetical asc
   rows.sort((a, b) => {
-    if (b.pts !== a.pts) return b.pts - a.pts;
-    if (b.gd !== a.gd) return b.gd - a.gd;
-    if (b.win !== a.win) return b.win - a.win;
+    if (b.goals !== a.goals) return b.goals - a.goals;
     return a.team.localeCompare(b.team);
   });
 
