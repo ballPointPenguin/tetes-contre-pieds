@@ -120,8 +120,8 @@
           "result": {
             "homeScore": 1,
             "awayScore": 1,
-            "homeFeetGoals": 1,
-            "homeHeadGoals": 0,
+            "homeFeetGoals": 0,
+            "homeHeadGoals": 1,
             "awayFeetGoals": 1,
             "awayHeadGoals": 0
           }
