@@ -14,9 +14,10 @@
           "result": {
             "homeScore": 2,
             "awayScore": 0,
-            "feetGoals": 1,
-            "headGoals": 1,
-            "otherGoals": 0
+            "homeFeetGoals": 1,
+            "homeHeadGoals": 1,
+            "awayFeetGoals": 0,
+            "awayHeadGoals": 0
           }
         },
         { 
@@ -28,9 +29,10 @@
           "result": {
             "homeScore": 2,
             "awayScore": 1,
-            "feetGoals": 2,
-            "headGoals": 1,
-            "otherGoals": 0
+            "homeFeetGoals": 2,
+            "homeHeadGoals": 0,
+            "awayFeetGoals": 0,
+            "awayHeadGoals": 1
           }
         },
         { 
@@ -42,9 +44,10 @@
           "result": {
             "homeScore": 1,
             "awayScore": 0,
-            "feetGoals": 1,
-            "headGoals": 0,
-            "otherGoals": 0
+            "homeFeetGoals": 1,
+            "homeHeadGoals": 0,
+            "awayFeetGoals": 0,
+            "awayHeadGoals": 0
           }
         },
         { 
@@ -56,9 +59,10 @@
           "result": {
             "homeScore": 1,
             "awayScore": 1,
-            "feetGoals": 2,
-            "headGoals": 0,
-            "otherGoals": 0
+            "homeFeetGoals": 1,
+            "homeHeadGoals": 0,
+            "awayFeetGoals": 1,
+            "awayHeadGoals": 0
           }
         },
         { "id": 5, "home": "Afrique du Sud", "away": "Corée du Sud", "date": "24 Juin 2026", "venue": "Monterrey" },

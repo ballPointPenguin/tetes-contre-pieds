@@ -21,8 +21,24 @@ interface Group {
 
 interface StandingRow {
   team: string;
+  feet: number;
+  heads: number;
   goals: number;
 }
+
+// Helper to calculate group-level feet and head goals
+const getGroupGoals = (groupMatches: Match[]) => {
+  let feet = 0;
+  let heads = 0;
+  groupMatches.forEach(match => {
+    const res = (match as any).result;
+    if (res) {
+      feet += (res.homeFeetGoals || 0) + (res.awayFeetGoals || 0);
+      heads += (res.homeHeadGoals || 0) + (res.awayHeadGoals || 0);
+    }
+  });
+  return { feet, heads };
+};
 
 interface Props {
   groups: Group[];
@@ -81,9 +97,16 @@ const getTeamTypeClass = (teamName: string) => {
         <div class="group-header">
           <h2>{getGroupName(group.name)}</h2>
           <div class="group-type-split">
-            <span class="split-item pieds">2 {t('badge.pieds')}</span>
-            <span class="split-vs">vs</span>
-            <span class="split-item tetes">2 {t('badge.tetes')}</span>
+            {(() => {
+              const { feet, heads } = getGroupGoals(group.matches);
+              return (
+                <>
+                  <span class="split-item pieds">{feet} {t('badge.pieds')}</span>
+                  <span class="split-vs">vs</span>
+                  <span class="split-item tetes">{heads} {t('badge.tetes')}</span>
+                </>
+              );
+            })()}
           </div>
         </div>
 
@@ -95,6 +118,8 @@ const getTeamTypeClass = (teamName: string) => {
                 <th class="col-pos">{t('table.pos')}</th>
                 <th class="col-team">{t('table.team')}</th>
                 <th class="col-type">{t('table.type')}</th>
+                <th class="col-stat">{t('badge.pieds')}</th>
+                <th class="col-stat">{t('badge.tetes')}</th>
                 <th class="col-pts">{t('table.goals')}</th>
               </tr>
             </thead>
@@ -106,6 +131,8 @@ const getTeamTypeClass = (teamName: string) => {
                   <td class={`col-type type-cell ${getTeamTypeClass(row.team)}`}>
                     {getTeamTypeBadge(row.team)}
                   </td>
+                  <td class="col-stat stat-cell">{row.feet}</td>
+                  <td class="col-stat stat-cell">{row.heads}</td>
                   <td class="col-pts pts-cell font-display">{row.goals}</td>
                 </tr>
               ))}

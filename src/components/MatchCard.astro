@@ -6,9 +6,10 @@ import { useTranslations } from '../i18n/ui';
 interface MatchResult {
   homeScore: number;
   awayScore: number;
-  feetGoals: number;
-  headGoals: number;
-  otherGoals: number;
+  homeFeetGoals: number;
+  homeHeadGoals: number;
+  awayFeetGoals: number;
+  awayHeadGoals: number;
 }
 
 interface Props {
@@ -114,9 +115,9 @@ const awayType = away ? teamTypes[away] : "unknown";
       <div class="breakdown-content">
         <span class="breakdown-label">Têtes-Pieds</span>
         <div class="breakdown-goals">
-          <span class="goal-stat pieds">🦶 {result.feetGoals}</span>
+          <span class="goal-stat pieds">🦶 {(result.homeFeetGoals || 0) + (result.awayFeetGoals || 0)}</span>
           <span class="goal-stat-separator">-</span>
-          <span class="goal-stat tetes">{result.headGoals} 👤</span>
+          <span class="goal-stat tetes">{(result.homeHeadGoals || 0) + (result.awayHeadGoals || 0)} 👤</span>
         </div>
       </div>
     </div>
