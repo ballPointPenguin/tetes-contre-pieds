@@ -75,14 +75,30 @@
           "home": "RSA",
           "away": "KOR",
           "date": "20260624",
-          "venue": "V_MONTERREY"
+          "venue": "V_MONTERREY",
+          "result": {
+            "homeScore": 0,
+            "awayScore": 0,
+            "homeFeetGoals": 0,
+            "homeHeadGoals": 0,
+            "awayFeetGoals": 0,
+            "awayHeadGoals": 0
+          }
         },
         {
           "id": 6,
           "home": "CZE",
           "away": "MEX",
           "date": "20260624",
-          "venue": "V_MEXICO_AZTECA"
+          "venue": "V_MEXICO_AZTECA",
+          "result": {
+            "homeScore": 0,
+            "awayScore": 0,
+            "homeFeetGoals": 0,
+            "homeHeadGoals": 0,
+            "awayFeetGoals": 0,
+            "awayHeadGoals": 0
+          }
         }
       ]
     },
@@ -203,42 +219,90 @@
           "home": "BRA",
           "away": "MAR",
           "date": "20260613",
-          "venue": "V_LOS_ANGELES"
+          "venue": "V_LOS_ANGELES",
+          "result": {
+            "homeScore": 1,
+            "awayScore": 1,
+            "homeFeetGoals": 1,
+            "homeHeadGoals": 0,
+            "awayFeetGoals": 1,
+            "awayHeadGoals": 0
+          }
         },
         {
           "id": 14,
           "home": "HAI",
           "away": "SCO",
           "date": "20260614",
-          "venue": "V_SEATTLE"
+          "venue": "V_SEATTLE",
+          "result": {
+            "homeScore": 0,
+            "awayScore": 1,
+            "homeFeetGoals": 0,
+            "homeHeadGoals": 0,
+            "awayFeetGoals": 1,
+            "awayHeadGoals": 0
+          }
         },
         {
           "id": 15,
           "home": "BRA",
           "away": "HAI",
           "date": "20260619",
-          "venue": "V_SEATTLE"
+          "venue": "V_SEATTLE",
+          "result": {
+            "homeScore": 3,
+            "awayScore": 0,
+            "homeFeetGoals": 3,
+            "homeHeadGoals": 0,
+            "awayFeetGoals": 0,
+            "awayHeadGoals": 0
+          }
         },
         {
           "id": 16,
           "home": "SCO",
           "away": "MAR",
           "date": "20260620",
-          "venue": "V_LOS_ANGELES"
+          "venue": "V_LOS_ANGELES",
+          "result": {
+            "homeScore": 0,
+            "awayScore": 1,
+            "homeFeetGoals": 0,
+            "homeHeadGoals": 0,
+            "awayFeetGoals": 1,
+            "awayHeadGoals": 0
+          }
         },
         {
           "id": 17,
           "home": "MAR",
           "away": "HAI",
           "date": "20260624",
-          "venue": "V_SEATTLE"
+          "venue": "V_SEATTLE",
+          "result": {
+            "homeScore": 0,
+            "awayScore": 0,
+            "homeFeetGoals": 0,
+            "homeHeadGoals": 0,
+            "awayFeetGoals": 0,
+            "awayHeadGoals": 0
+          }
         },
         {
           "id": 18,
           "home": "SCO",
           "away": "BRA",
           "date": "20260624",
-          "venue": "V_LOS_ANGELES"
+          "venue": "V_LOS_ANGELES",
+          "result": {
+            "homeScore": 0,
+            "awayScore": 0,
+            "homeFeetGoals": 0,
+            "homeHeadGoals": 0,
+            "awayFeetGoals": 0,
+            "awayHeadGoals": 0
+          }
         }
       ]
     },
@@ -264,21 +328,45 @@
           "home": "TUR",
           "away": "USA",
           "date": "20260615",
-          "venue": "V_DALLAS"
+          "venue": "V_DALLAS",
+          "result": {
+            "homeScore": 0,
+            "awayScore": 0,
+            "homeFeetGoals": 0,
+            "homeHeadGoals": 0,
+            "awayFeetGoals": 0,
+            "awayHeadGoals": 0
+          }
         },
         {
           "id": 21,
           "home": "AUS",
           "away": "TUR",
           "date": "20260619",
-          "venue": "V_HOUSTON"
+          "venue": "V_HOUSTON",
+          "result": {
+            "homeScore": 2,
+            "awayScore": 0,
+            "homeFeetGoals": 2,
+            "homeHeadGoals": 0,
+            "awayFeetGoals": 0,
+            "awayHeadGoals": 0
+          }
         },
         {
           "id": 22,
           "home": "USA",
           "away": "PAR",
           "date": "20260620",
-          "venue": "V_DALLAS"
+          "venue": "V_DALLAS",
+          "result": {
+            "homeScore": 4,
+            "awayScore": 1,
+            "homeFeetGoals": 4,
+            "homeHeadGoals": 0,
+            "awayFeetGoals": 1,
+            "awayHeadGoals": 0
+          }
         },
         {
           "id": 23,
@@ -292,7 +380,15 @@
           "home": "USA",
           "away": "AUS",
           "date": "20260625",
-          "venue": "V_HOUSTON"
+          "venue": "V_HOUSTON",
+          "result": {
+            "homeScore": 2,
+            "awayScore": 0,
+            "homeFeetGoals": 2,
+            "homeHeadGoals": 0,
+            "awayFeetGoals": 0,
+            "awayHeadGoals": 0
+          }
         }
       ]
     },
@@ -311,42 +407,90 @@
           "home": "GER",
           "away": "CUW",
           "date": "20260615",
-          "venue": "V_NY_NJ"
+          "venue": "V_NY_NJ",
+          "result": {
+            "homeScore": 7,
+            "awayScore": 1,
+            "homeFeetGoals": 7,
+            "homeHeadGoals": 0,
+            "awayFeetGoals": 1,
+            "awayHeadGoals": 0
+          }
         },
         {
           "id": 26,
           "home": "CIV",
           "away": "ECU",
           "date": "20260616",
-          "venue": "V_BOSTON"
+          "venue": "V_BOSTON",
+          "result": {
+            "homeScore": 1,
+            "awayScore": 0,
+            "homeFeetGoals": 1,
+            "homeHeadGoals": 0,
+            "awayFeetGoals": 0,
+            "awayHeadGoals": 0
+          }
         },
         {
           "id": 27,
           "home": "GER",
           "away": "CIV",
           "date": "20260620",
-          "venue": "V_NY_NJ"
+          "venue": "V_NY_NJ",
+          "result": {
+            "homeScore": 2,
+            "awayScore": 1,
+            "homeFeetGoals": 2,
+            "homeHeadGoals": 0,
+            "awayFeetGoals": 1,
+            "awayHeadGoals": 0
+          }
         },
         {
           "id": 28,
           "home": "ECU",
           "away": "CUW",
           "date": "20260621",
-          "venue": "V_BOSTON"
+          "venue": "V_BOSTON",
+          "result": {
+            "homeScore": 0,
+            "awayScore": 0,
+            "homeFeetGoals": 0,
+            "homeHeadGoals": 0,
+            "awayFeetGoals": 0,
+            "awayHeadGoals": 0
+          }
         },
         {
           "id": 29,
           "home": "CUW",
           "away": "CIV",
           "date": "20260625",
-          "venue": "V_PHILADELPHIA"
+          "venue": "V_PHILADELPHIA",
+          "result": {
+            "homeScore": 0,
+            "awayScore": 0,
+            "homeFeetGoals": 0,
+            "homeHeadGoals": 0,
+            "awayFeetGoals": 0,
+            "awayHeadGoals": 0
+          }
         },
         {
           "id": 30,
           "home": "ECU",
           "away": "GER",
           "date": "20260625",
-          "venue": "V_NY_NJ"
+          "venue": "V_NY_NJ",
+          "result": {
+            "homeScore": 0,
+            "awayScore": 0,
+            "homeFeetGoals": 0,
+            "homeHeadGoals": 0,
+            "awayFeetGoals": 0,
+            "awayHeadGoals": 0
+          }
         }
       ]
     },
@@ -372,28 +516,60 @@
           "home": "SWE",
           "away": "TUN",
           "date": "20260617",
-          "venue": "V_SEATTLE"
+          "venue": "V_SEATTLE",
+          "result": {
+            "homeScore": 5,
+            "awayScore": 1,
+            "homeFeetGoals": 5,
+            "homeHeadGoals": 0,
+            "awayFeetGoals": 1,
+            "awayHeadGoals": 0
+          }
         },
         {
           "id": 33,
           "home": "JPN",
           "away": "SWE",
           "date": "20260621",
-          "venue": "V_SAN_FRANCISCO"
+          "venue": "V_SAN_FRANCISCO",
+          "result": {
+            "homeScore": 0,
+            "awayScore": 0,
+            "homeFeetGoals": 0,
+            "homeHeadGoals": 0,
+            "awayFeetGoals": 0,
+            "awayHeadGoals": 0
+          }
         },
         {
           "id": 34,
           "home": "TUN",
           "away": "NED",
           "date": "20260622",
-          "venue": "V_SEATTLE"
+          "venue": "V_SEATTLE",
+          "result": {
+            "homeScore": 0,
+            "awayScore": 0,
+            "homeFeetGoals": 0,
+            "homeHeadGoals": 0,
+            "awayFeetGoals": 0,
+            "awayHeadGoals": 0
+          }
         },
         {
           "id": 35,
           "home": "NED",
           "away": "SWE",
           "date": "20260625",
-          "venue": "V_SAN_FRANCISCO"
+          "venue": "V_SAN_FRANCISCO",
+          "result": {
+            "homeScore": 5,
+            "awayScore": 1,
+            "homeFeetGoals": 5,
+            "homeHeadGoals": 0,
+            "awayFeetGoals": 1,
+            "awayHeadGoals": 0
+          }
         },
         {
           "id": 36,
@@ -419,42 +595,90 @@
           "home": "BEL",
           "away": "EGY",
           "date": "20260617",
-          "venue": "V_KANSAS_CITY"
+          "venue": "V_KANSAS_CITY",
+          "result": {
+            "homeScore": 1,
+            "awayScore": 1,
+            "homeFeetGoals": 1,
+            "homeHeadGoals": 0,
+            "awayFeetGoals": 1,
+            "awayHeadGoals": 0
+          }
         },
         {
           "id": 38,
           "home": "IRN",
           "away": "NZL",
           "date": "20260618",
-          "venue": "V_ATLANTA"
+          "venue": "V_ATLANTA",
+          "result": {
+            "homeScore": 2,
+            "awayScore": 2,
+            "homeFeetGoals": 2,
+            "homeHeadGoals": 0,
+            "awayFeetGoals": 2,
+            "awayHeadGoals": 0
+          }
         },
         {
           "id": 39,
           "home": "BEL",
           "away": "IRN",
           "date": "20260622",
-          "venue": "V_KANSAS_CITY"
+          "venue": "V_KANSAS_CITY",
+          "result": {
+            "homeScore": 0,
+            "awayScore": 0,
+            "homeFeetGoals": 0,
+            "homeHeadGoals": 0,
+            "awayFeetGoals": 0,
+            "awayHeadGoals": 0
+          }
         },
         {
           "id": 40,
           "home": "NZL",
           "away": "EGY",
           "date": "20260623",
-          "venue": "V_ATLANTA"
+          "venue": "V_ATLANTA",
+          "result": {
+            "homeScore": 1,
+            "awayScore": 3,
+            "homeFeetGoals": 1,
+            "homeHeadGoals": 0,
+            "awayFeetGoals": 3,
+            "awayHeadGoals": 0
+          }
         },
         {
           "id": 41,
           "home": "EGY",
           "away": "IRN",
           "date": "20260626",
-          "venue": "V_KANSAS_CITY"
+          "venue": "V_KANSAS_CITY",
+          "result": {
+            "homeScore": 0,
+            "awayScore": 0,
+            "homeFeetGoals": 0,
+            "homeHeadGoals": 0,
+            "awayFeetGoals": 0,
+            "awayHeadGoals": 0
+          }
         },
         {
           "id": 42,
           "home": "NZL",
           "away": "BEL",
           "date": "20260626",
-          "venue": "V_ATLANTA"
+          "venue": "V_ATLANTA",
+          "result": {
+            "homeScore": 0,
+            "awayScore": 0,
+            "homeFeetGoals": 0,
+            "homeHeadGoals": 0,
+            "awayFeetGoals": 0,
+            "awayHeadGoals": 0
+          }
         }
       ]
     },
@@ -473,42 +697,90 @@
           "home": "ESP",
           "away": "CPV",
           "date": "20260618",
-          "venue": "V_MIAMI"
+          "venue": "V_MIAMI",
+          "result": {
+            "homeScore": 0,
+            "awayScore": 0,
+            "homeFeetGoals": 0,
+            "homeHeadGoals": 0,
+            "awayFeetGoals": 0,
+            "awayHeadGoals": 0
+          }
         },
         {
           "id": 44,
           "home": "KSA",
           "away": "URU",
           "date": "20260619",
-          "venue": "V_ATLANTA"
+          "venue": "V_ATLANTA",
+          "result": {
+            "homeScore": 1,
+            "awayScore": 1,
+            "homeFeetGoals": 1,
+            "homeHeadGoals": 0,
+            "awayFeetGoals": 1,
+            "awayHeadGoals": 0
+          }
         },
         {
           "id": 45,
           "home": "ESP",
           "away": "KSA",
           "date": "20260623",
-          "venue": "V_MIAMI"
+          "venue": "V_MIAMI",
+          "result": {
+            "homeScore": 4,
+            "awayScore": 0,
+            "homeFeetGoals": 4,
+            "homeHeadGoals": 0,
+            "awayFeetGoals": 0,
+            "awayHeadGoals": 0
+          }
         },
         {
           "id": 46,
           "home": "URU",
           "away": "CPV",
           "date": "20260624",
-          "venue": "V_ATLANTA"
+          "venue": "V_ATLANTA",
+          "result": {
+            "homeScore": 2,
+            "awayScore": 2,
+            "homeFeetGoals": 2,
+            "homeHeadGoals": 0,
+            "awayFeetGoals": 2,
+            "awayHeadGoals": 0
+          }
         },
         {
           "id": 47,
           "home": "CPV",
           "away": "KSA",
           "date": "20260626",
-          "venue": "V_MIAMI"
+          "venue": "V_MIAMI",
+          "result": {
+            "homeScore": 0,
+            "awayScore": 0,
+            "homeFeetGoals": 0,
+            "homeHeadGoals": 0,
+            "awayFeetGoals": 0,
+            "awayHeadGoals": 0
+          }
         },
         {
           "id": 48,
           "home": "URU",
           "away": "ESP",
           "date": "20260626",
-          "venue": "V_ATLANTA"
+          "venue": "V_ATLANTA",
+          "result": {
+            "homeScore": 0,
+            "awayScore": 0,
+            "homeFeetGoals": 0,
+            "homeHeadGoals": 0,
+            "awayFeetGoals": 0,
+            "awayHeadGoals": 0
+          }
         }
       ]
     },
@@ -527,42 +799,90 @@
           "home": "FRA",
           "away": "SEN",
           "date": "20260619",
-          "venue": "V_BOSTON"
+          "venue": "V_BOSTON",
+          "result": {
+            "homeScore": 3,
+            "awayScore": 1,
+            "homeFeetGoals": 3,
+            "homeHeadGoals": 0,
+            "awayFeetGoals": 1,
+            "awayHeadGoals": 0
+          }
         },
         {
           "id": 50,
           "home": "IRQ",
           "away": "NOR",
           "date": "20260620",
-          "venue": "V_PHILADELPHIA"
+          "venue": "V_PHILADELPHIA",
+          "result": {
+            "homeScore": 1,
+            "awayScore": 4,
+            "homeFeetGoals": 0,
+            "homeHeadGoals": 1,
+            "awayFeetGoals": 2,
+            "awayHeadGoals": 2
+          }
         },
         {
           "id": 51,
           "home": "FRA",
           "away": "IRQ",
           "date": "20260624",
-          "venue": "V_BOSTON"
+          "venue": "V_BOSTON",
+          "result": {
+            "homeScore": 3,
+            "awayScore": 0,
+            "homeFeetGoals": 3,
+            "homeHeadGoals": 0,
+            "awayFeetGoals": 0,
+            "awayHeadGoals": 0
+          }
         },
         {
           "id": 52,
           "home": "NOR",
           "away": "SEN",
           "date": "20260625",
-          "venue": "V_PHILADELPHIA"
+          "venue": "V_PHILADELPHIA",
+          "result": {
+            "homeScore": 3,
+            "awayScore": 2,
+            "homeFeetGoals": 3,
+            "homeHeadGoals": 0,
+            "awayFeetGoals": 2,
+            "awayHeadGoals": 0
+          }
         },
         {
           "id": 53,
           "home": "SEN",
           "away": "IRQ",
           "date": "20260626",
-          "venue": "V_BOSTON"
+          "venue": "V_BOSTON",
+          "result": {
+            "homeScore": 0,
+            "awayScore": 0,
+            "homeFeetGoals": 0,
+            "homeHeadGoals": 0,
+            "awayFeetGoals": 0,
+            "awayHeadGoals": 0
+          }
         },
         {
           "id": 54,
           "home": "NOR",
           "away": "FRA",
           "date": "20260626",
-          "venue": "V_PHILADELPHIA"
+          "venue": "V_PHILADELPHIA",
+          "result": {
+            "homeScore": 0,
+            "awayScore": 0,
+            "homeFeetGoals": 0,
+            "homeHeadGoals": 0,
+            "awayFeetGoals": 0,
+            "awayHeadGoals": 0
+          }
         }
       ]
     },
@@ -581,42 +901,90 @@
           "home": "ARG",
           "away": "ALG",
           "date": "20260620",
-          "venue": "V_DALLAS"
+          "venue": "V_DALLAS",
+          "result": {
+            "homeScore": 3,
+            "awayScore": 0,
+            "homeFeetGoals": 3,
+            "homeHeadGoals": 0,
+            "awayFeetGoals": 0,
+            "awayHeadGoals": 0
+          }
         },
         {
           "id": 56,
           "home": "AUT",
           "away": "JOR",
           "date": "20260621",
-          "venue": "V_HOUSTON"
+          "venue": "V_HOUSTON",
+          "result": {
+            "homeScore": 3,
+            "awayScore": 1,
+            "homeFeetGoals": 3,
+            "homeHeadGoals": 0,
+            "awayFeetGoals": 1,
+            "awayHeadGoals": 0
+          }
         },
         {
           "id": 57,
           "home": "ARG",
           "away": "AUT",
           "date": "20260625",
-          "venue": "V_DALLAS"
+          "venue": "V_DALLAS",
+          "result": {
+            "homeScore": 2,
+            "awayScore": 0,
+            "homeFeetGoals": 2,
+            "homeHeadGoals": 0,
+            "awayFeetGoals": 0,
+            "awayHeadGoals": 0
+          }
         },
         {
           "id": 58,
           "home": "JOR",
           "away": "ALG",
           "date": "20260626",
-          "venue": "V_HOUSTON"
+          "venue": "V_HOUSTON",
+          "result": {
+            "homeScore": 1,
+            "awayScore": 2,
+            "homeFeetGoals": 1,
+            "homeHeadGoals": 0,
+            "awayFeetGoals": 1,
+            "awayHeadGoals": 1
+          }
         },
         {
           "id": 59,
           "home": "ALG",
           "away": "AUT",
           "date": "20260627",
-          "venue": "V_DALLAS"
+          "venue": "V_DALLAS",
+          "result": {
+            "homeScore": 0,
+            "awayScore": 0,
+            "homeFeetGoals": 0,
+            "homeHeadGoals": 0,
+            "awayFeetGoals": 0,
+            "awayHeadGoals": 0
+          }
         },
         {
           "id": 60,
           "home": "JOR",
           "away": "ARG",
           "date": "20260627",
-          "venue": "V_HOUSTON"
+          "venue": "V_HOUSTON",
+          "result": {
+            "homeScore": 0,
+            "awayScore": 0,
+            "homeFeetGoals": 0,
+            "homeHeadGoals": 0,
+            "awayFeetGoals": 0,
+            "awayHeadGoals": 0
+          }
         }
       ]
     },
@@ -635,42 +1003,90 @@
           "home": "POR",
           "away": "COD",
           "date": "20260621",
-          "venue": "V_MIAMI"
+          "venue": "V_MIAMI",
+          "result": {
+            "homeScore": 1,
+            "awayScore": 1,
+            "homeFeetGoals": 0,
+            "homeHeadGoals": 1,
+            "awayFeetGoals": 0,
+            "awayHeadGoals": 1
+          }
         },
         {
           "id": 62,
           "home": "UZB",
           "away": "COL",
           "date": "20260622",
-          "venue": "V_PHILADELPHIA"
+          "venue": "V_PHILADELPHIA",
+          "result": {
+            "homeScore": 1,
+            "awayScore": 3,
+            "homeFeetGoals": 0,
+            "homeHeadGoals": 1,
+            "awayFeetGoals": 2,
+            "awayHeadGoals": 1
+          }
         },
         {
           "id": 63,
           "home": "POR",
           "away": "UZB",
           "date": "20260625",
-          "venue": "V_MIAMI"
+          "venue": "V_MIAMI",
+          "result": {
+            "homeScore": 5,
+            "awayScore": 0,
+            "homeFeetGoals": 5,
+            "homeHeadGoals": 0,
+            "awayFeetGoals": 0,
+            "awayHeadGoals": 0
+          }
         },
         {
           "id": 64,
           "home": "COL",
           "away": "COD",
           "date": "20260626",
-          "venue": "V_PHILADELPHIA"
+          "venue": "V_PHILADELPHIA",
+          "result": {
+            "homeScore": 1,
+            "awayScore": 0,
+            "homeFeetGoals": 1,
+            "homeHeadGoals": 0,
+            "awayFeetGoals": 0,
+            "awayHeadGoals": 0
+          }
         },
         {
           "id": 65,
           "home": "COD",
           "away": "UZB",
           "date": "20260627",
-          "venue": "V_MIAMI"
+          "venue": "V_MIAMI",
+          "result": {
+            "homeScore": 0,
+            "awayScore": 0,
+            "homeFeetGoals": 0,
+            "homeHeadGoals": 0,
+            "awayFeetGoals": 0,
+            "awayHeadGoals": 0
+          }
         },
         {
           "id": 66,
           "home": "COL",
           "away": "POR",
           "date": "20260627",
-          "venue": "V_PHILADELPHIA"
+          "venue": "V_PHILADELPHIA",
+          "result": {
+            "homeScore": 0,
+            "awayScore": 0,
+            "homeFeetGoals": 0,
+            "homeHeadGoals": 0,
+            "awayFeetGoals": 0,
+            "awayHeadGoals": 0
+          }
         }
       ]
     },
@@ -689,42 +1105,90 @@
           "home": "ENG",
           "away": "CRO",
           "date": "20260622",
-          "venue": "V_NY_NJ"
+          "venue": "V_NY_NJ",
+          "result": {
+            "homeScore": 4,
+            "awayScore": 2,
+            "homeFeetGoals": 3,
+            "homeHeadGoals": 1,
+            "awayFeetGoals": 2,
+            "awayHeadGoals": 0
+          }
         },
         {
           "id": 68,
           "home": "GHA",
           "away": "PAN",
           "date": "20260623",
-          "venue": "V_BOSTON"
+          "venue": "V_BOSTON",
+          "result": {
+            "homeScore": 1,
+            "awayScore": 0,
+            "homeFeetGoals": 1,
+            "homeHeadGoals": 0,
+            "awayFeetGoals": 0,
+            "awayHeadGoals": 0
+          }
         },
         {
           "id": 69,
           "home": "ENG",
           "away": "GHA",
           "date": "20260626",
-          "venue": "V_NY_NJ"
+          "venue": "V_NY_NJ",
+          "result": {
+            "homeScore": 0,
+            "awayScore": 0,
+            "homeFeetGoals": 0,
+            "homeHeadGoals": 0,
+            "awayFeetGoals": 0,
+            "awayHeadGoals": 0
+          }
         },
         {
           "id": 70,
           "home": "PAN",
           "away": "CRO",
           "date": "20260627",
-          "venue": "V_BOSTON"
+          "venue": "V_BOSTON",
+          "result": {
+            "homeScore": 0,
+            "awayScore": 1,
+            "homeFeetGoals": 0,
+            "homeHeadGoals": 0,
+            "awayFeetGoals": 1,
+            "awayHeadGoals": 0
+          }
         },
         {
           "id": 71,
           "home": "CRO",
           "away": "GHA",
           "date": "20260627",
-          "venue": "V_PHILADELPHIA"
+          "venue": "V_PHILADELPHIA",
+          "result": {
+            "homeScore": 0,
+            "awayScore": 0,
+            "homeFeetGoals": 0,
+            "homeHeadGoals": 0,
+            "awayFeetGoals": 0,
+            "awayHeadGoals": 0
+          }
         },
         {
           "id": 72,
           "home": "PAN",
           "away": "ENG",
           "date": "20260627",
-          "venue": "V_NY_NJ"
+          "venue": "V_NY_NJ",
+          "result": {
+            "homeScore": 0,
+            "awayScore": 0,
+            "homeFeetGoals": 0,
+            "homeHeadGoals": 0,
+            "awayFeetGoals": 0,
+            "awayHeadGoals": 0
+          }
         }
       ]
     }
