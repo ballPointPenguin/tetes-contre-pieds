@@ -1,0 +1,67 @@
+name: Update Scores
+
+on:
+  schedule:
+    # Run every 6 hours during the tournament (Jun 11 – Jul 19, 2026 UTC)
+    - cron: '0 */6 * * *'
+  # Allow manual triggering from the Actions tab
+  workflow_dispatch:
+    inputs:
+      group:
+        description: 'Single group to update (A–L), or leave blank for all'
+        required: false
+        default: ''
+      force:
+        description: 'Force overwrite of existing results'
+        required: false
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+jobs:
+  update-scores:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Run score updater
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          ARGS=""
+          if [ -n "${{ github.event.inputs.group }}" ]; then
+            ARGS="$ARGS --group ${{ github.event.inputs.group }}"
+          fi
+          if [ "${{ github.event.inputs.force }}" = "true" ]; then
+            ARGS="$ARGS --force"
+          fi
+          pnpm update-scores $ARGS
+
+      - name: Commit and push if changed
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add src/data/wc2026.json
+          # Only commit if there are actual changes
+          if git diff --staged --quiet; then
+            echo "No changes to commit."
+          else
+            git commit -m "chore: update scores [skip ci]"
+            git push
+          fi
