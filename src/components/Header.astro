@@ -34,21 +34,6 @@ const t = useTranslations(lang);
       </div>
     </div>
 
-    <!-- Live Prediction Scoreboard -->
-    <div class="scoreboard-wrapper">
-      <div class="scoreboard-labels">
-        <span class="label-pieds"><span class="icon">🦶</span> {t('scoreboard.pieds')}: <strong id="global-count-pieds">0</strong></span>
-        <span class="score-ratio" id="global-ratio">50% / 50%</span>
-        <span class="label-tetes">{t('scoreboard.tetes')}: <strong id="global-count-tetes">0</strong> <span class="icon">👤</span></span>
-      </div>
-      <div class="scoreboard-bar-bg">
-        <div class="scoreboard-bar-fill" id="global-fill" style="width: 50%;"></div>
-      </div>
-      <div class="matches-predicted-label">
-        {t('scoreboard.predicted')} : <span id="predicted-matches-count">0</span> / 72
-      </div>
-    </div>
-
     <!-- Navigation Tabs & Language Picker -->
     <div class="nav-controls">
       <!-- Language Picker -->
@@ -93,8 +78,8 @@ const t = useTranslations(lang);
     max-width: 1400px;
     margin: 0 auto;
     padding: 16px 24px;
-    display: grid;
-    grid-template-columns: 1fr 1.2fr 1.2fr;
+    display: flex;
+    justify-content: space-between;
     align-items: center;
     gap: 24px;
   }
@@ -151,77 +136,6 @@ const t = useTranslations(lang);
     font-size: 0.75rem;
     color: var(--text-secondary);
     font-weight: 500;
-  }
-
-  /* Scoreboard / Prediction stats */
-  .scoreboard-wrapper {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-    background: rgba(255, 255, 255, 0.02);
-    padding: 10px 16px;
-    border-radius: 12px;
-    border: 1px solid rgba(255, 255, 255, 0.04);
-  }
-
-  .scoreboard-labels {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 0.85rem;
-    font-weight: 600;
-  }
-
-  .label-pieds {
-    color: var(--color-pieds);
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    text-shadow: 0 0 4px var(--color-pieds-glow);
-  }
-
-  .label-tetes {
-    color: var(--color-tetes);
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    text-shadow: 0 0 4px var(--color-tetes-glow);
-  }
-
-  .score-ratio {
-    font-family: var(--font-display);
-    font-size: 0.8rem;
-    color: var(--text-secondary);
-    background: rgba(0, 0, 0, 0.2);
-    padding: 2px 8px;
-    border-radius: 20px;
-    font-weight: 700;
-  }
-
-  .scoreboard-bar-bg {
-    height: 8px;
-    background: var(--color-tetes);
-    border-radius: 4px;
-    overflow: hidden;
-    position: relative;
-    box-shadow: 0 0 10px var(--color-tetes-glow);
-  }
-
-  .scoreboard-bar-fill {
-    height: 100%;
-    background: var(--color-pieds);
-    transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: 0 0 10px var(--color-pieds-glow-strong);
-    border-right: 2px solid #fff;
-  }
-
-  .matches-predicted-label {
-    font-size: 0.7rem;
-    text-align: center;
-    color: var(--text-muted);
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
   }
 
   /* Nav Controls (tabs + picker) */
@@ -316,29 +230,9 @@ const t = useTranslations(lang);
   }
 
   /* Responsive styling */
-  @media (max-width: 1200px) {
+  @media (max-width: 768px) {
     .header-container {
-      grid-template-columns: 1fr 1.2fr;
-    }
-    .nav-controls {
-      grid-column: span 2;
-      justify-content: space-between;
-      order: 4;
-      border-top: 1px solid rgba(255, 255, 255, 0.04);
-      padding-top: 12px;
-    }
-    .scoreboard-wrapper {
-      grid-column: span 2;
-      order: 3;
-    }
-  }
-
-  @media (max-width: 640px) {
-    .main-header {
-      border-radius: 0 0 16px 16px;
-    }
-    .header-container {
-      grid-template-columns: 1fr;
+      flex-direction: column;
       gap: 12px;
       padding: 12px 16px;
     }
@@ -346,12 +240,21 @@ const t = useTranslations(lang);
       justify-content: center;
     }
     .nav-controls {
-      grid-column: span 1;
-      order: 3;
+      justify-content: space-between;
+      width: 100%;
+      border-top: 1px solid rgba(255, 255, 255, 0.04);
+      padding-top: 12px;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .main-header {
+      border-radius: 0 0 16px 16px;
+    }
+    .nav-controls {
       flex-direction: column;
       gap: 12px;
       padding-top: 8px;
-      width: 100%;
     }
     .lang-picker {
       width: 100%;
@@ -369,11 +272,6 @@ const t = useTranslations(lang);
       text-align: center;
       padding: 8px 12px;
       font-size: 0.8rem;
-    }
-    .scoreboard-wrapper {
-      grid-column: span 1;
-      order: 2;
-      padding: 8px 12px;
     }
   }
 </style>

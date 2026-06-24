@@ -15,7 +15,6 @@ const { id, home, away, date, venue, isKnockout = false, homePlaceholder = "", a
 
 // Determine team type based on their name suffix
 // e.g., odd numbers (A1, A3) are Pieds, even numbers (A2, A4) are Têtes.
-// For knockouts, we'll determine it dynamically in client JS, but we can set defaults.
 const getTeamType = (teamName: string) => {
   if (!teamName) return "unknown";
   const numPart = teamName.replace(/[^0-9]/g, "");
@@ -36,7 +35,6 @@ const awayType = getTeamType(away);
   data-home-placeholder={homePlaceholder}
   data-away-placeholder={awayPlaceholder}
   data-is-knockout={isKnockout ? "true" : "false"}
-  data-winner=""
 >
   <!-- Card Header: Match ID, Round, Date/Venue -->
   <div class="match-card-header">
@@ -47,25 +45,24 @@ const awayType = getTeamType(away);
   <!-- Teams Section -->
   <div class="match-teams">
     <!-- Home Team -->
-    <button class="team-row" data-team="home" aria-label={`Prédire victoire pour ${home || homePlaceholder}`}>
+    <div class="team-row" data-team="home">
       <div class="team-badge-wrapper">
-        <div class="team-indicator-dot"></div>
         <span class="team-name" data-team-text="home">{home || homePlaceholder}</span>
       </div>
       <div class="team-type-badge-container" data-team-badge="home">
         {home && (
           homeType === "pieds" ? (
             <span class="type-badge pieds">
-              <span class="badge-icon">🦶</span> Pieds
+              <span class="badge-icon">🦶</span>
             </span>
           ) : (
             <span class="type-badge tetes">
-              <span class="badge-icon">👤</span> Têtes
+              <span class="badge-icon">👤</span>
             </span>
           )
         )}
       </div>
-    </button>
+    </div>
 
     <!-- VS Divider -->
     <div class="match-vs-divider">
@@ -75,25 +72,24 @@ const awayType = getTeamType(away);
     </div>
 
     <!-- Away Team -->
-    <button class="team-row" data-team="away" aria-label={`Prédire victoire pour ${away || awayPlaceholder}`}>
+    <div class="team-row" data-team="away">
       <div class="team-badge-wrapper">
-        <div class="team-indicator-dot"></div>
         <span class="team-name" data-team-text="away">{away || awayPlaceholder}</span>
       </div>
       <div class="team-type-badge-container" data-team-badge="away">
         {away && (
           awayType === "pieds" ? (
             <span class="type-badge pieds">
-              <span class="badge-icon">🦶</span> Pieds
+              <span class="badge-icon">🦶</span>
             </span>
           ) : (
             <span class="type-badge tetes">
-              <span class="badge-icon">👤</span> Têtes
+              <span class="badge-icon">👤</span>
             </span>
           )
         )}
       </div>
-    </button>
+    </div>
   </div>
 </div>
 
@@ -106,18 +102,7 @@ const awayType = getTeamType(away);
     position: relative;
     overflow: hidden;
     background: rgba(18, 22, 43, 0.4);
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  .match-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 4px;
-    height: 100%;
-    background: transparent;
-    transition: background-color 0.3s ease;
+    transition: border-color 0.3s ease;
   }
 
   /* Card Header styling */
@@ -163,29 +148,14 @@ const awayType = getTeamType(away);
     align-items: center;
     padding: 8px 10px;
     border-radius: 8px;
-    background: rgba(255, 255, 255, 0.02);
-    border: 1px solid rgba(255, 255, 255, 0.03);
-    text-align: left;
-    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  .team-row:hover {
-    background: rgba(255, 255, 255, 0.06);
-    border-color: rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.01);
+    border: 1px solid rgba(255, 255, 255, 0.02);
   }
 
   .team-badge-wrapper {
     display: flex;
     align-items: center;
     gap: 8px;
-  }
-
-  .team-indicator-dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.1);
-    transition: all 0.3s ease;
   }
 
   .team-name {
@@ -198,13 +168,11 @@ const awayType = getTeamType(away);
   .type-badge {
     font-size: 0.7rem;
     font-weight: 700;
-    padding: 2px 8px;
-    border-radius: 12px;
+    padding: 2px 6px;
+    border-radius: 8px;
     display: inline-flex;
     align-items: center;
     gap: 4px;
-    text-transform: uppercase;
-    letter-spacing: 0.03em;
   }
 
   .type-badge.pieds {
@@ -240,47 +208,5 @@ const awayType = getTeamType(away);
     font-weight: 800;
     color: var(--text-muted);
     letter-spacing: 0.1em;
-  }
-
-  /* Winner Selection styling applied dynamically */
-  
-  /* Home winner active styling */
-  .match-card[data-winner="home"] {
-    border-color: rgba(255, 255, 255, 0.15);
-  }
-  .match-card[data-winner="home"]::before {
-    background: var(--color-winner, var(--color-pieds));
-  }
-  .match-card[data-winner="home"] .team-row[data-team="home"] {
-    background: var(--bg-winner-active, rgba(0, 242, 254, 0.1));
-    border-color: var(--border-winner-active, rgba(0, 242, 254, 0.3));
-    box-shadow: 0 0 10px var(--glow-winner-active, var(--color-pieds-glow));
-  }
-  .match-card[data-winner="home"] .team-row[data-team="home"] .team-indicator-dot {
-    background: var(--color-winner, var(--color-pieds));
-    box-shadow: 0 0 8px var(--color-winner, var(--color-pieds));
-  }
-  .match-card[data-winner="home"] .team-row[data-team="away"] {
-    opacity: 0.45;
-  }
-
-  /* Away winner active styling */
-  .match-card[data-winner="away"] {
-    border-color: rgba(255, 255, 255, 0.15);
-  }
-  .match-card[data-winner="away"]::before {
-    background: var(--color-winner, var(--color-tetes));
-  }
-  .match-card[data-winner="away"] .team-row[data-team="away"] {
-    background: var(--bg-winner-active, rgba(255, 0, 127, 0.1));
-    border-color: var(--border-winner-active, rgba(255, 0, 127, 0.3));
-    box-shadow: 0 0 10px var(--glow-winner-active, var(--color-tetes-glow));
-  }
-  .match-card[data-winner="away"] .team-row[data-team="away"] .team-indicator-dot {
-    background: var(--color-winner, var(--color-tetes));
-    box-shadow: 0 0 8px var(--color-winner, var(--color-tetes));
-  }
-  .match-card[data-winner="away"] .team-row[data-team="home"] {
-    opacity: 0.45;
   }
 </style>

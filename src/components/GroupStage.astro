@@ -93,17 +93,17 @@ const getTeamTypeClass = (teamName: string) => {
             </thead>
             <tbody data-group-tbody={group.id}>
               {group.teams.map((team, index) => (
-                <tr data-team-row={team} data-pts="0" data-win="0" data-draw="0" data-loss="0" data-played="0">
+                <tr>
                   <td class="col-pos pos-cell">{index + 1}</td>
                   <td class="col-team team-cell font-display">{team}</td>
                   <td class={`col-type type-cell ${getTeamTypeClass(team)}`}>
                     {getTeamTypeBadge(team)}
                   </td>
-                  <td class="col-stat stat-cell" data-played-val>0</td>
-                  <td class="col-stat stat-cell" data-win-val>0</td>
-                  <td class="col-stat stat-cell" data-draw-val>0</td>
-                  <td class="col-stat stat-cell" data-loss-val>0</td>
-                  <td class="col-pts pts-cell font-display" data-pts-val>0</td>
+                  <td class="col-stat stat-cell">0</td>
+                  <td class="col-stat stat-cell">0</td>
+                  <td class="col-stat stat-cell">0</td>
+                  <td class="col-stat stat-cell">0</td>
+                  <td class="col-pts pts-cell font-display">0</td>
                 </tr>
               ))}
             </tbody>
@@ -209,7 +209,7 @@ const getTeamTypeClass = (teamName: string) => {
   .group-section {
     padding: 24px;
     background: rgba(13, 17, 34, 0.5);
-    scroll-margin-top: 200px; /* Offset for sticky header + picker */
+    scroll-margin-top: 200px;
   }
 
   .group-header {

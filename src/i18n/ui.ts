@@ -13,10 +13,6 @@ export const ui = {
     'title': 'TÊTES & PIEDS',
     'subtitle': 'World Cup 2026: Heads or Feet?',
     'seo.description': 'Têtes contre Pieds: The ultimate World Cup 2026 bracket. Track goals made by feet vs. headers.',
-    'scoreboard.pieds': 'Feet',
-    'scoreboard.tetes': 'Heads',
-    'scoreboard.ratio': 'Ratio',
-    'scoreboard.predicted': 'Matches predicted',
     'footer.copyright': '© 2026 Têtes contre Pieds. No toes or foreheads were harmed during development.',
     'footer.disclaimer': 'Unofficial 48-team bracket for lovers of beautiful play.',
     'group.teams.split': '2 Feet vs 2 Heads',
@@ -50,10 +46,6 @@ export const ui = {
     'title': 'TÊTES & PIEDS',
     'subtitle': 'Mundial 2026: ¿frente o taco?',
     'seo.description': 'Têtes contre Pieds: El bracket definitivo del Mundial 2026. Sigue el duelo entre goles de pie y de cabeza.',
-    'scoreboard.pieds': 'Pies',
-    'scoreboard.tetes': 'Cabezas',
-    'scoreboard.ratio': 'Proporción',
-    'scoreboard.predicted': 'Partidos pronosticados',
     'footer.copyright': '© 2026 Têtes contre Pieds. Ningún dedo ni frente resultó herido durante el desarrollo.',
     'footer.disclaimer': 'Bracket no oficial de 48 equipos para amantes del buen juego.',
     'group.teams.split': '2 Pies vs 2 Cabezas',
@@ -100,10 +92,6 @@ export const ui = {
     'badge.pieds': 'Pieds',
     'badge.tetes': 'Têtes',
     'quicknav.goto': 'Aller au Groupe :',
-    'scoreboard.pieds': 'Pieds',
-    'scoreboard.tetes': 'Têtes',
-    'scoreboard.ratio': 'Ratio',
-    'scoreboard.predicted': 'Matchs pronostiqués',
     'footer.copyright': '© 2026 Têtes contre Pieds. Aucun crampon ni front n\'a été blessé durant le développement.',
     'footer.disclaimer': 'Bracket 48 équipes non-officiel pour l\'Euro/Mondial des amateurs de beaux gestes.',
     'placeholder.winner': 'Vainqueur',
@@ -122,7 +110,6 @@ export const ui = {
 
 export function useTranslations(lang: keyof typeof ui) {
   return function t(key: keyof typeof ui[typeof defaultLang]) {
-    // Return translation if exists, otherwise fallback to key, then default lang
     return ui[lang]?.[key] || ui[defaultLang]?.[key] || key;
   };
 }
