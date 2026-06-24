@@ -90,51 +90,51 @@
       "id": "B",
       "name": "Groupe B",
       "teams": [
-        "B1",
-        "B2",
-        "B3",
-        "B4"
+        "CAN",
+        "BIH",
+        "QAT",
+        "SUI"
       ],
       "matches": [
         {
           "id": 7,
-          "home": "B1",
-          "away": "B2",
+          "home": "CAN",
+          "away": "BIH",
           "date": "20260612",
           "venue": "V_TORONTO"
         },
         {
           "id": 8,
-          "home": "B3",
-          "away": "B4",
+          "home": "QAT",
+          "away": "SUI",
           "date": "20260613",
           "venue": "V_VANCOUVER"
         },
         {
           "id": 9,
-          "home": "B1",
-          "away": "B3",
+          "home": "CAN",
+          "away": "QAT",
           "date": "20260617",
           "venue": "V_TORONTO"
         },
         {
           "id": 10,
-          "home": "B4",
-          "away": "B2",
+          "home": "SUI",
+          "away": "BIH",
           "date": "20260618",
           "venue": "V_VANCOUVER"
         },
         {
           "id": 11,
-          "home": "B2",
-          "away": "B3",
+          "home": "BIH",
+          "away": "QAT",
           "date": "20260624",
           "venue": "V_TORONTO"
         },
         {
           "id": 12,
-          "home": "B4",
-          "away": "B1",
+          "home": "SUI",
+          "away": "CAN",
           "date": "20260624",
           "venue": "V_VANCOUVER"
         }
@@ -144,51 +144,51 @@
       "id": "C",
       "name": "Groupe C",
       "teams": [
-        "C1",
-        "C2",
-        "C3",
-        "C4"
+        "BRA",
+        "MAR",
+        "HAI",
+        "SCO"
       ],
       "matches": [
         {
           "id": 13,
-          "home": "C1",
-          "away": "C2",
+          "home": "BRA",
+          "away": "MAR",
           "date": "20260613",
           "venue": "V_LOS_ANGELES"
         },
         {
           "id": 14,
-          "home": "C3",
-          "away": "C4",
+          "home": "HAI",
+          "away": "SCO",
           "date": "20260614",
           "venue": "V_SEATTLE"
         },
         {
           "id": 15,
-          "home": "C1",
-          "away": "C3",
+          "home": "BRA",
+          "away": "HAI",
           "date": "20260619",
           "venue": "V_SEATTLE"
         },
         {
           "id": 16,
-          "home": "C4",
-          "away": "C2",
+          "home": "SCO",
+          "away": "MAR",
           "date": "20260620",
           "venue": "V_LOS_ANGELES"
         },
         {
           "id": 17,
-          "home": "C2",
-          "away": "C3",
+          "home": "MAR",
+          "away": "HAI",
           "date": "20260624",
           "venue": "V_SEATTLE"
         },
         {
           "id": 18,
-          "home": "C4",
-          "away": "C1",
+          "home": "SCO",
+          "away": "BRA",
           "date": "20260624",
           "venue": "V_LOS_ANGELES"
         }
@@ -198,51 +198,51 @@
       "id": "D",
       "name": "Groupe D",
       "teams": [
-        "D1",
-        "D2",
-        "D3",
-        "D4"
+        "AUS",
+        "PAR",
+        "TUR",
+        "USA"
       ],
       "matches": [
         {
           "id": 19,
-          "home": "D1",
-          "away": "D2",
+          "home": "AUS",
+          "away": "PAR",
           "date": "20260614",
           "venue": "V_HOUSTON"
         },
         {
           "id": 20,
-          "home": "D3",
-          "away": "D4",
+          "home": "TUR",
+          "away": "USA",
           "date": "20260615",
           "venue": "V_DALLAS"
         },
         {
           "id": 21,
-          "home": "D1",
-          "away": "D3",
+          "home": "AUS",
+          "away": "TUR",
           "date": "20260619",
           "venue": "V_HOUSTON"
         },
         {
           "id": 22,
-          "home": "D4",
-          "away": "D2",
+          "home": "USA",
+          "away": "PAR",
           "date": "20260620",
           "venue": "V_DALLAS"
         },
         {
           "id": 23,
-          "home": "D2",
-          "away": "D3",
+          "home": "PAR",
+          "away": "TUR",
           "date": "20260625",
           "venue": "V_DALLAS"
         },
         {
           "id": 24,
-          "home": "D4",
-          "away": "D1",
+          "home": "USA",
+          "away": "AUS",
           "date": "20260625",
           "venue": "V_HOUSTON"
         }
@@ -252,51 +252,51 @@
       "id": "E",
       "name": "Groupe E",
       "teams": [
-        "E1",
-        "E2",
-        "E3",
-        "E4"
+        "GER",
+        "CUW",
+        "CIV",
+        "ECU"
       ],
       "matches": [
         {
           "id": 25,
-          "home": "E1",
-          "away": "E2",
+          "home": "GER",
+          "away": "CUW",
           "date": "20260615",
           "venue": "V_NY_NJ"
         },
         {
           "id": 26,
-          "home": "E3",
-          "away": "E4",
+          "home": "CIV",
+          "away": "ECU",
           "date": "20260616",
           "venue": "V_BOSTON"
         },
         {
           "id": 27,
-          "home": "E1",
-          "away": "E3",
+          "home": "GER",
+          "away": "CIV",
           "date": "20260620",
           "venue": "V_NY_NJ"
         },
         {
           "id": 28,
-          "home": "E4",
-          "away": "E2",
+          "home": "ECU",
+          "away": "CUW",
           "date": "20260621",
           "venue": "V_BOSTON"
         },
         {
           "id": 29,
-          "home": "E2",
-          "away": "E3",
+          "home": "CUW",
+          "away": "CIV",
           "date": "20260625",
           "venue": "V_PHILADELPHIA"
         },
         {
           "id": 30,
-          "home": "E4",
-          "away": "E1",
+          "home": "ECU",
+          "away": "GER",
           "date": "20260625",
           "venue": "V_NY_NJ"
         }
@@ -306,51 +306,51 @@
       "id": "F",
       "name": "Groupe F",
       "teams": [
-        "F1",
-        "F2",
-        "F3",
-        "F4"
+        "JPN",
+        "NED",
+        "SWE",
+        "TUN"
       ],
       "matches": [
         {
           "id": 31,
-          "home": "F1",
-          "away": "F2",
+          "home": "JPN",
+          "away": "NED",
           "date": "20260616",
           "venue": "V_SAN_FRANCISCO"
         },
         {
           "id": 32,
-          "home": "F3",
-          "away": "F4",
+          "home": "SWE",
+          "away": "TUN",
           "date": "20260617",
           "venue": "V_SEATTLE"
         },
         {
           "id": 33,
-          "home": "F1",
-          "away": "F3",
+          "home": "JPN",
+          "away": "SWE",
           "date": "20260621",
           "venue": "V_SAN_FRANCISCO"
         },
         {
           "id": 34,
-          "home": "F4",
-          "away": "F2",
+          "home": "TUN",
+          "away": "NED",
           "date": "20260622",
           "venue": "V_SEATTLE"
         },
         {
           "id": 35,
-          "home": "F2",
-          "away": "F3",
+          "home": "NED",
+          "away": "SWE",
           "date": "20260625",
           "venue": "V_SAN_FRANCISCO"
         },
         {
           "id": 36,
-          "home": "F4",
-          "away": "F1",
+          "home": "TUN",
+          "away": "JPN",
           "date": "20260625",
           "venue": "V_SEATTLE"
         }
@@ -360,51 +360,51 @@
       "id": "G",
       "name": "Groupe G",
       "teams": [
-        "G1",
-        "G2",
-        "G3",
-        "G4"
+        "BEL",
+        "EGY",
+        "IRN",
+        "NZL"
       ],
       "matches": [
         {
           "id": 37,
-          "home": "G1",
-          "away": "G2",
+          "home": "BEL",
+          "away": "EGY",
           "date": "20260617",
           "venue": "V_KANSAS_CITY"
         },
         {
           "id": 38,
-          "home": "G3",
-          "away": "G4",
+          "home": "IRN",
+          "away": "NZL",
           "date": "20260618",
           "venue": "V_ATLANTA"
         },
         {
           "id": 39,
-          "home": "G1",
-          "away": "G3",
+          "home": "BEL",
+          "away": "IRN",
           "date": "20260622",
           "venue": "V_KANSAS_CITY"
         },
         {
           "id": 40,
-          "home": "G4",
-          "away": "G2",
+          "home": "NZL",
+          "away": "EGY",
           "date": "20260623",
           "venue": "V_ATLANTA"
         },
         {
           "id": 41,
-          "home": "G2",
-          "away": "G3",
+          "home": "EGY",
+          "away": "IRN",
           "date": "20260626",
           "venue": "V_KANSAS_CITY"
         },
         {
           "id": 42,
-          "home": "G4",
-          "away": "G1",
+          "home": "NZL",
+          "away": "BEL",
           "date": "20260626",
           "venue": "V_ATLANTA"
         }
@@ -414,51 +414,51 @@
       "id": "H",
       "name": "Groupe H",
       "teams": [
-        "H1",
-        "H2",
-        "H3",
-        "H4"
+        "ESP",
+        "CPV",
+        "KSA",
+        "URU"
       ],
       "matches": [
         {
           "id": 43,
-          "home": "H1",
-          "away": "H2",
+          "home": "ESP",
+          "away": "CPV",
           "date": "20260618",
           "venue": "V_MIAMI"
         },
         {
           "id": 44,
-          "home": "H3",
-          "away": "H4",
+          "home": "KSA",
+          "away": "URU",
           "date": "20260619",
           "venue": "V_ATLANTA"
         },
         {
           "id": 45,
-          "home": "H1",
-          "away": "H3",
+          "home": "ESP",
+          "away": "KSA",
           "date": "20260623",
           "venue": "V_MIAMI"
         },
         {
           "id": 46,
-          "home": "H4",
-          "away": "H2",
+          "home": "URU",
+          "away": "CPV",
           "date": "20260624",
           "venue": "V_ATLANTA"
         },
         {
           "id": 47,
-          "home": "H2",
-          "away": "H3",
+          "home": "CPV",
+          "away": "KSA",
           "date": "20260626",
           "venue": "V_MIAMI"
         },
         {
           "id": 48,
-          "home": "H4",
-          "away": "H1",
+          "home": "URU",
+          "away": "ESP",
           "date": "20260626",
           "venue": "V_ATLANTA"
         }
@@ -468,51 +468,51 @@
       "id": "I",
       "name": "Groupe I",
       "teams": [
-        "I1",
-        "I2",
-        "I3",
-        "I4"
+        "FRA",
+        "SEN",
+        "IRQ",
+        "NOR"
       ],
       "matches": [
         {
           "id": 49,
-          "home": "I1",
-          "away": "I2",
+          "home": "FRA",
+          "away": "SEN",
           "date": "20260619",
           "venue": "V_BOSTON"
         },
         {
           "id": 50,
-          "home": "I3",
-          "away": "I4",
+          "home": "IRQ",
+          "away": "NOR",
           "date": "20260620",
           "venue": "V_PHILADELPHIA"
         },
         {
           "id": 51,
-          "home": "I1",
-          "away": "I3",
+          "home": "FRA",
+          "away": "IRQ",
           "date": "20260624",
           "venue": "V_BOSTON"
         },
         {
           "id": 52,
-          "home": "I4",
-          "away": "I2",
+          "home": "NOR",
+          "away": "SEN",
           "date": "20260625",
           "venue": "V_PHILADELPHIA"
         },
         {
           "id": 53,
-          "home": "I2",
-          "away": "I3",
+          "home": "SEN",
+          "away": "IRQ",
           "date": "20260626",
           "venue": "V_BOSTON"
         },
         {
           "id": 54,
-          "home": "I4",
-          "away": "I1",
+          "home": "NOR",
+          "away": "FRA",
           "date": "20260626",
           "venue": "V_PHILADELPHIA"
         }
@@ -522,51 +522,51 @@
       "id": "J",
       "name": "Groupe J",
       "teams": [
-        "J1",
-        "J2",
-        "J3",
-        "J4"
+        "ARG",
+        "ALG",
+        "AUT",
+        "JOR"
       ],
       "matches": [
         {
           "id": 55,
-          "home": "J1",
-          "away": "J2",
+          "home": "ARG",
+          "away": "ALG",
           "date": "20260620",
           "venue": "V_DALLAS"
         },
         {
           "id": 56,
-          "home": "J3",
-          "away": "J4",
+          "home": "AUT",
+          "away": "JOR",
           "date": "20260621",
           "venue": "V_HOUSTON"
         },
         {
           "id": 57,
-          "home": "J1",
-          "away": "J3",
+          "home": "ARG",
+          "away": "AUT",
           "date": "20260625",
           "venue": "V_DALLAS"
         },
         {
           "id": 58,
-          "home": "J4",
-          "away": "J2",
+          "home": "JOR",
+          "away": "ALG",
           "date": "20260626",
           "venue": "V_HOUSTON"
         },
         {
           "id": 59,
-          "home": "J2",
-          "away": "J3",
+          "home": "ALG",
+          "away": "AUT",
           "date": "20260627",
           "venue": "V_DALLAS"
         },
         {
           "id": 60,
-          "home": "J4",
-          "away": "J1",
+          "home": "JOR",
+          "away": "ARG",
           "date": "20260627",
           "venue": "V_HOUSTON"
         }
@@ -576,51 +576,51 @@
       "id": "K",
       "name": "Groupe K",
       "teams": [
-        "K1",
-        "K2",
-        "K3",
-        "K4"
+        "POR",
+        "COD",
+        "UZB",
+        "COL"
       ],
       "matches": [
         {
           "id": 61,
-          "home": "K1",
-          "away": "K2",
+          "home": "POR",
+          "away": "COD",
           "date": "20260621",
           "venue": "V_MIAMI"
         },
         {
           "id": 62,
-          "home": "K3",
-          "away": "K4",
+          "home": "UZB",
+          "away": "COL",
           "date": "20260622",
           "venue": "V_PHILADELPHIA"
         },
         {
           "id": 63,
-          "home": "K1",
-          "away": "K3",
+          "home": "POR",
+          "away": "UZB",
           "date": "20260625",
           "venue": "V_MIAMI"
         },
         {
           "id": 64,
-          "home": "K4",
-          "away": "K2",
+          "home": "COL",
+          "away": "COD",
           "date": "20260626",
           "venue": "V_PHILADELPHIA"
         },
         {
           "id": 65,
-          "home": "K2",
-          "away": "K3",
+          "home": "COD",
+          "away": "UZB",
           "date": "20260627",
           "venue": "V_MIAMI"
         },
         {
           "id": 66,
-          "home": "K4",
-          "away": "K1",
+          "home": "COL",
+          "away": "POR",
           "date": "20260627",
           "venue": "V_PHILADELPHIA"
         }
@@ -630,51 +630,51 @@
       "id": "L",
       "name": "Groupe L",
       "teams": [
-        "L1",
-        "L2",
-        "L3",
-        "L4"
+        "ENG",
+        "CRO",
+        "GHA",
+        "PAN"
       ],
       "matches": [
         {
           "id": 67,
-          "home": "L1",
-          "away": "L2",
+          "home": "ENG",
+          "away": "CRO",
           "date": "20260622",
           "venue": "V_NY_NJ"
         },
         {
           "id": 68,
-          "home": "L3",
-          "away": "L4",
+          "home": "GHA",
+          "away": "PAN",
           "date": "20260623",
           "venue": "V_BOSTON"
         },
         {
           "id": 69,
-          "home": "L1",
-          "away": "L3",
+          "home": "ENG",
+          "away": "GHA",
           "date": "20260626",
           "venue": "V_NY_NJ"
         },
         {
           "id": 70,
-          "home": "L4",
-          "away": "L2",
+          "home": "PAN",
+          "away": "CRO",
           "date": "20260627",
           "venue": "V_BOSTON"
         },
         {
           "id": 71,
-          "home": "L2",
-          "away": "L3",
+          "home": "CRO",
+          "away": "GHA",
           "date": "20260627",
           "venue": "V_PHILADELPHIA"
         },
         {
           "id": 72,
-          "home": "L4",
-          "away": "L1",
+          "home": "PAN",
+          "away": "ENG",
           "date": "20260627",
           "venue": "V_NY_NJ"
         }

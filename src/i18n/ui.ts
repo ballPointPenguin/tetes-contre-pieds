@@ -39,11 +39,66 @@ export const ui = {
     'header.matches_completed': 'Matches completed',
     'header.score.of': 'of',
     'header.score.total': 'total',
-    // Team IDs
+    // Team IDs — Group A
     'MEX': 'Mexico',
     'RSA': 'South Africa',
     'KOR': 'South Korea',
     'CZE': 'Czechia',
+    // Group B
+    'CAN': 'Canada',
+    'BIH': 'Bosnia and Herzegovina',
+    'QAT': 'Qatar',
+    'SUI': 'Switzerland',
+    // Group C
+    'BRA': 'Brazil',
+    'MAR': 'Morocco',
+    'HAI': 'Haiti',
+    'SCO': 'Scotland',
+    // Group D
+    'AUS': 'Australia',
+    'PAR': 'Paraguay',
+    'TUR': 'Turkey',
+    'USA': 'United States',
+    // Group E
+    'GER': 'Germany',
+    'CUW': 'Curaçao',
+    'CIV': 'Ivory Coast',
+    'ECU': 'Ecuador',
+    // Group F
+    'JPN': 'Japan',
+    'NED': 'Netherlands',
+    'SWE': 'Sweden',
+    'TUN': 'Tunisia',
+    // Group G
+    'BEL': 'Belgium',
+    'EGY': 'Egypt',
+    'IRN': 'Iran',
+    'NZL': 'New Zealand',
+    // Group H
+    'ESP': 'Spain',
+    'CPV': 'Cape Verde',
+    'KSA': 'Saudi Arabia',
+    'URU': 'Uruguay',
+    // Group I
+    'FRA': 'France',
+    'SEN': 'Senegal',
+    'IRQ': 'Iraq',
+    'NOR': 'Norway',
+    // Group J
+    'ARG': 'Argentina',
+    'ALG': 'Algeria',
+    'AUT': 'Austria',
+    'JOR': 'Jordan',
+    // Group K
+    'POR': 'Portugal',
+    'COD': 'DR Congo',
+    'UZB': 'Uzbekistan',
+    'COL': 'Colombia',
+    // Group L
+    'ENG': 'England',
+    'CRO': 'Croatia',
+    'GHA': 'Ghana',
+    'PAN': 'Panama',
     // Venue IDs
     'V_ATLANTA': 'Atlanta',
     'V_ATLANTA_MERCEDES': 'Atlanta (Mercedes-Benz Stadium)',
@@ -99,11 +154,66 @@ export const ui = {
     'header.matches_completed': 'Partidos jugados',
     'header.score.of': 'de',
     'header.score.total': 'total',
-    // Team IDs
+    // Team IDs — Group A
     'MEX': 'México',
     'RSA': 'Sudáfrica',
     'KOR': 'Corea del Sur',
     'CZE': 'Chequia',
+    // Group B
+    'CAN': 'Canadá',
+    'BIH': 'Bosnia y Herzegovina',
+    'QAT': 'Catar',
+    'SUI': 'Suiza',
+    // Group C
+    'BRA': 'Brasil',
+    'MAR': 'Marruecos',
+    'HAI': 'Haití',
+    'SCO': 'Escocia',
+    // Group D
+    'AUS': 'Australia',
+    'PAR': 'Paraguay',
+    'TUR': 'Turquía',
+    'USA': 'Estados Unidos',
+    // Group E
+    'GER': 'Alemania',
+    'CUW': 'Curazao',
+    'CIV': 'Costa de Marfil',
+    'ECU': 'Ecuador',
+    // Group F
+    'JPN': 'Japón',
+    'NED': 'Países Bajos',
+    'SWE': 'Suecia',
+    'TUN': 'Túnez',
+    // Group G
+    'BEL': 'Bélgica',
+    'EGY': 'Egipto',
+    'IRN': 'Irán',
+    'NZL': 'Nueva Zelanda',
+    // Group H
+    'ESP': 'España',
+    'CPV': 'Cabo Verde',
+    'KSA': 'Arabia Saudita',
+    'URU': 'Uruguay',
+    // Group I
+    'FRA': 'Francia',
+    'SEN': 'Senegal',
+    'IRQ': 'Irak',
+    'NOR': 'Noruega',
+    // Group J
+    'ARG': 'Argentina',
+    'ALG': 'Argelia',
+    'AUT': 'Austria',
+    'JOR': 'Jordania',
+    // Group K
+    'POR': 'Portugal',
+    'COD': 'Rep. Dem. del Congo',
+    'UZB': 'Uzbekistán',
+    'COL': 'Colombia',
+    // Group L
+    'ENG': 'Inglaterra',
+    'CRO': 'Croacia',
+    'GHA': 'Ghana',
+    'PAN': 'Panamá',
     // Venue IDs
     'V_ATLANTA': 'Atlanta',
     'V_ATLANTA_MERCEDES': 'Atlanta (Mercedes-Benz Stadium)',
@@ -159,11 +269,66 @@ export const ui = {
     'header.matches_completed': 'Matchs complétés',
     'header.score.of': 'sur',
     'header.score.total': 'au total',
-    // Team IDs
+    // Team IDs — Group A
     'MEX': 'Mexique',
     'RSA': 'Afrique du Sud',
     'KOR': 'Corée du Sud',
     'CZE': 'Tchéquie',
+    // Group B
+    'CAN': 'Canada',
+    'BIH': 'Bosnie-Herzégovine',
+    'QAT': 'Qatar',
+    'SUI': 'Suisse',
+    // Group C
+    'BRA': 'Brésil',
+    'MAR': 'Maroc',
+    'HAI': 'Haïti',
+    'SCO': 'Écosse',
+    // Group D
+    'AUS': 'Australie',
+    'PAR': 'Paraguay',
+    'TUR': 'Turquie',
+    'USA': 'États-Unis',
+    // Group E
+    'GER': 'Allemagne',
+    'CUW': 'Curaçao',
+    'CIV': "Côte d'Ivoire",
+    'ECU': 'Équateur',
+    // Group F
+    'JPN': 'Japon',
+    'NED': 'Pays-Bas',
+    'SWE': 'Suède',
+    'TUN': 'Tunisie',
+    // Group G
+    'BEL': 'Belgique',
+    'EGY': 'Égypte',
+    'IRN': 'Iran',
+    'NZL': 'Nouvelle-Zélande',
+    // Group H
+    'ESP': 'Espagne',
+    'CPV': 'Cap-Vert',
+    'KSA': 'Arabie saoudite',
+    'URU': 'Uruguay',
+    // Group I
+    'FRA': 'France',
+    'SEN': 'Sénégal',
+    'IRQ': 'Irak',
+    'NOR': 'Norvège',
+    // Group J
+    'ARG': 'Argentine',
+    'ALG': 'Algérie',
+    'AUT': 'Autriche',
+    'JOR': 'Jordanie',
+    // Group K
+    'POR': 'Portugal',
+    'COD': 'RD Congo',
+    'UZB': 'Ouzbékistan',
+    'COL': 'Colombie',
+    // Group L
+    'ENG': 'Angleterre',
+    'CRO': 'Croatie',
+    'GHA': 'Ghana',
+    'PAN': 'Panama',
     // Venue IDs
     'V_ATLANTA': 'Atlanta',
     'V_ATLANTA_MERCEDES': 'Atlanta (Mercedes-Benz Stadium)',
