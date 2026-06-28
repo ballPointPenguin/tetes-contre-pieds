@@ -576,7 +576,15 @@
           "home": "TUN",
           "away": "JPN",
           "date": "20260625",
-          "venue": "V_SEATTLE"
+          "venue": "V_SEATTLE",
+          "result": {
+            "homeScore": 0,
+            "awayScore": 4,
+            "homeFeetGoals": 0,
+            "homeHeadGoals": 0,
+            "awayFeetGoals": 4,
+            "awayHeadGoals": 0
+          }
         }
       ]
     },
